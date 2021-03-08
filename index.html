@@ -12,13 +12,17 @@
 <body>
     <div class="game">
 
-        <div class="start-screen">
+
+        <div class="start-screen" data-start-screen>
             <h1 class="start-screen__name">SPACESHIP</h1>
             <button class="start-screen__button start-screen__button--start" data-btn-start></button>
             <button class="start-screen__button start-screen__button--exit" data-btn-exit></button>
-            <button class="start-screen__button start-screen__button--settings" data-btn-settings></button>
+            <!-- <button class="start-screen__button start-screen__button--settings" data-btn-settings></button> -->
+            <button class="start-screen__button start-screen__button--sound" data-btn-sound>
+                <div class="start-screen__button--sound__line" data-sound-line></div>
+            </button>
 
-            <audio controls loop muted autoplay src="./audio/menu.wav" data-start-screen-audio></audio>
+            <audio loop src="./audio/menu.wav" data-start-screen-audio></audio>
 
         </div>
     </div>

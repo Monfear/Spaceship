@@ -87,14 +87,22 @@ body {
   background-image: url("./../img/Exit_BTN.png");
 }
 
-.start-screen__button--settings {
+.start-screen__button--sound {
   width: 53px;
   height: 53px;
   border-radius: 10px;
-  background-image: url("./../img/Settings_BTN.png");
+  background-image: url("./../img/Sound_BTN.png");
 }
 
-.start-screen__button--settings:hover {
+.start-screen__button--sound__line {
+  width: 100%;
+  height: 5px;
+  background-color: red;
+  -webkit-transform: rotate(-50deg);
+          transform: rotate(-50deg);
+}
+
+.start-screen__button--sound:hover {
   -webkit-box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
           box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
 }

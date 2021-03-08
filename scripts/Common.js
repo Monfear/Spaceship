@@ -1,10 +1,13 @@
 export class Common {
     elementsOfDOM = {
         // main menu
-        audioStartScreen: "[data-start-screen-audio]",
+        startScreen: "[data-start-screen]",
         btnStart: "[data-btn-start]",
         btnExit: "[data-btn-exit]",
-        btnSettings: "[data-btn-settings]",
+        // btnSettings: "[data-btn-settings]",
+        audioStartScreen: "[data-start-screen-audio]",
+        btnSound: "[data-btn-sound]",
+        divSoundLine: "[data-sound-line]",
     };
 
     getElement(selector) {

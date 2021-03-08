@@ -75,11 +75,29 @@ body {
             background-image: url("./../img/Exit_BTN.png");
         }
 
-        &--settings {
+        // &--settings {
+        //     width: 53px;
+        //     height: 53px;
+        //     border-radius: 10px;
+        //     background-image: url("./../img/Settings_BTN.png");
+
+        //     &:hover {
+        //         box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
+        //     }
+        // }
+
+        &--sound {
             width: 53px;
             height: 53px;
             border-radius: 10px;
-            background-image: url("./../img/Settings_BTN.png");
+            background-image: url("./../img/Sound_BTN.png");
+
+            &__line {
+                width: 100%;
+                height: 5px;
+                background-color: red;
+                transform: rotate(-50deg);
+            }
 
             &:hover {
                 box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
