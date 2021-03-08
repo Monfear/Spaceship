@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
+$text-color: #e4f5f4;
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.hide {
+    display: none;
+}
+
+body {
+    background-color: black;
+    font-family: "Audiowide", sans-serif;
+}
+
+.game {
+    height: 100vh;
+    background-image: url("./../img/BG.png");
+    background-size: cover;
+}
+
+.start-screen {
+    width: 640px;
+    height: 480px;
+    background-image: url("./../img/Window.png");
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    &__name {
+        margin-top: 2%;
+        margin-bottom: 13%;
+        color: $text-color;
+    }
+
+    &__button {
+        width: 300px;
+        height: 85px;
+        background-color: transparent;
+        background-size: cover;
+        border: none;
+        cursor: pointer;
+        margin-top: 2%;
+        border-radius: 20px;
+        outline: none;
+        transition: all 0.2s;
+
+        &:hover {
+            box-shadow: 0 0 20px 5px white, 0 0 5px 9px inset white;
+            transform: scale(1.05);
+        }
+
+        &:active {
+            transform: translateY(-2%);
+        }
+
+        &--start {
+            background-image: url("./../img/Start_BTN.png");
+        }
+
+        &--exit {
+            background-image: url("./../img/Exit_BTN.png");
+        }
+
+        &--settings {
+            width: 53px;
+            height: 53px;
+            border-radius: 10px;
+            background-image: url("./../img/Settings_BTN.png");
+
+            &:hover {
+                box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
+            }
+        }
+    }
+}
