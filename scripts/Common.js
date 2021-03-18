@@ -1,13 +1,27 @@
 export class Common {
     elementsOfDOM = {
+        // game
+        gameScreen: "[data-game-screen]",
+        scoreNumber: "[data-score-number]",
+
         // main menu
         startScreen: "[data-start-screen]",
         btnStart: "[data-btn-start]",
         btnExit: "[data-btn-exit]",
-        // btnSettings: "[data-btn-settings]",
         audioStartScreen: "[data-start-screen-audio]",
         btnSound: "[data-btn-sound]",
         divSoundLine: "[data-sound-line]",
+
+        // battle area
+        battleScreen: "[data-battle-screen]",
+        counter: "[data-counter]",
+        hpBar: "[data-hp-bar]",
+        armorBar: "[data-armor-bar]",
+        spaceship: "[data-spaceship]",
+        info: "[data-info]",
+        score: "[data-score]",
+        life: "[data-life]",
+        bullet: "[data-bullet]",
     };
 
     getElement(selector) {

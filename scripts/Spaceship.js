@@ -1,0 +1,129 @@
+import { Common } from "./Common.js";
+import { Bullet } from "./Bullet.js";
+import { Barrier } from "./Barrier.js";
+
+export class Spaceship extends Common {
+    constructor(area) {
+        super();
+
+        this.area = area;
+        this.element = this.getElement(this.elementsOfDOM.spaceship);
+    }
+
+    isArrowLeft = false;
+    isArrowRight = false;
+    isBarrier = false;
+
+    moveStep = 10;
+    bullets = [];
+
+    lives = 3;
+    shields = 3;
+
+    init() {
+        this.connectDOM();
+        this.setStartResistance();
+        this.setStartPosition();
+        this.updatePositionLoop();
+    }
+
+    connectDOM() {
+        this.hpBar = this.getElement(this.elementsOfDOM.hpBar);
+        this.armorBar = this.getElement(this.elementsOfDOM.armorBar);
+    }
+
+    setStartPosition() {
+        this.element.hidden = false;
+        this.element.style.bottom = "0px";
+        this.element.style.transform = "translateY(255px)"; //55
+        this.element.style.left = `${window.innerWidth / 2 - this.getCurrentPosition()}px`;
+    }
+
+    setStartResistance() {
+        for (let i = this.lives; i > 0; i--) {
+            let hpItem = document.createElement("div");
+            hpItem.classList.add("battle-screen__hp");
+            this.hpBar.append(hpItem);
+        }
+
+        for (let i = this.shields; i > 0; i--) {
+            let shieldItem = document.createElement("div");
+            shieldItem.classList.add("battle-screen__armor");
+            this.armorBar.append(shieldItem);
+        }
+    }
+
+    getCurrentPosition() {
+        return this.element.offsetLeft + this.element.offsetWidth / 2;
+    }
+
+    actionListeners = () => {
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") {
+                this.isArrowLeft = true;
+            } else if (e.key === "ArrowRight") {
+                this.isArrowRight = true;
+            }
+        });
+
+        window.addEventListener("keyup", (e) => {
+            if (e.key === " ") {
+                this.executeShot();
+            }
+
+            if (e.key === "Control") {
+                this.executeBarrier();
+            }
+
+            if (e.key === "ArrowLeft") {
+                this.isArrowLeft = false;
+            } else if (e.key === "ArrowRight") {
+                this.isArrowRight = false;
+            }
+        });
+    };
+
+    updatePositionLoop = () => {
+        this.updateMoves();
+        requestAnimationFrame(this.updatePositionLoop);
+    };
+
+    updateMoves() {
+        if (this.isArrowLeft && this.getCurrentPosition() > 10) {
+            this.element.style.left = parseInt(this.element.style.left) - this.moveStep + "px";
+
+            if (this.isBarrier) {
+                this.barrier.element.style.left = parseInt(this.element.style.left) - this.moveStep * 2.8 + "px";
+            }
+        } else if (this.isArrowRight && this.getCurrentPosition() < window.innerWidth - 10) {
+            this.element.style.left = parseInt(this.element.style.left) + this.moveStep + "px";
+
+            if (this.isBarrier) {
+                this.barrier.element.style.left = parseInt(this.element.style.left) + this.moveStep * -2.8 + "px";
+            }
+        }
+    }
+
+    executeShot() {
+        console.log("shot");
+
+        const bullet = new Bullet(this.getCurrentPosition(), this.element.offsetTop, this.area);
+        bullet.init();
+        this.bullets.push(bullet);
+    }
+
+    executeBarrier() {
+        console.log("barrier");
+
+        this.barrier = new Barrier(this.getCurrentPosition(), this.element.offsetTop, this.area);
+        this.isBarrier = true;
+
+        this.barrier.init();
+
+        setTimeout(() => {
+            this.barrier.delete();
+
+            this.isBarrier = false;
+        }, 3000);
+    }
+}

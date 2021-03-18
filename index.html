@@ -4,31 +4,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spaceship</title>
+    <title>Spacewar</title>
     <link rel="shortcut icon" href="./img/Damage_Icon.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css">
+    <script src="./script.js" type="module" defer></script>
 </head>
 
 <body>
-    <div class="game">
-
+    <main class="game" data-game-screen>
 
         <div class="start-screen" data-start-screen>
-            <h1 class="start-screen__name">SPACESHIP</h1>
+            <h1 class="start-screen__name">SPACEWAR</h1>
             <button class="start-screen__button start-screen__button--start" data-btn-start></button>
             <button class="start-screen__button start-screen__button--exit" data-btn-exit></button>
-            <!-- <button class="start-screen__button start-screen__button--settings" data-btn-settings></button> -->
             <button class="start-screen__button start-screen__button--sound" data-btn-sound>
                 <div class="start-screen__button--sound__line" data-sound-line></div>
             </button>
 
             <audio loop src="./audio/menu.wav" data-start-screen-audio></audio>
+        </div>
+
+        <div class="battle-screen" data-battle-screen>
+            <div class="battle-screen__backdrop hide"></div>
+
+            <h1 class="battle-screen__counter" data-counter></h1>
+
+            <section class="battle-screen__info" data-info>
+                <p class="battle-screen__score" data-score>Score: <span class="battle-screen__scores__number"
+                        data-score-number></span>
+                </p>
+
+                <div class="battle-screen__life" data-life>
+                    <div class="battle-screen__hp-bar" data-hp-bar>
+                        <!-- <div class="battle-screen__hp"></div>
+                        <div class="battle-screen__hp"></div>
+                        <div class="battle-screen__hp"></div>
+                        <div class="battle-screen__hp"></div> -->
+                    </div>
+
+                    <div class="battle-screen__armor-bar" data-armor-bar>
+                        <!-- <div class="battle-screen__armor"></div>
+                        <div class="battle-screen__armor"></div>
+                        <div class="battle-screen__armor"></div>
+                        <div class="battle-screen__armor"></div> -->
+                    </div>
+                </div>
+
+
+            </section>
+
+            <div class="battle-screen__spaceship" data-spaceship hidden></div>
+            <!-- <div class="battle-screen__bullet" data-bullet></div> -->
+
+            <!-- <div class="battle-screen__enemy1"></div>
+            <div class="battle-screen__enemy2"></div>
+            <div class="battle-screen__enemy3"></div>
+
+            <div class="battle-screen__spaceship-explosion"></div>
+
+            <div class="battle-screen__explosion-big"></div>
+
+            <div class="battle-screen__explosion-small"></div>
+
+
+            <div class="battle-screen__shield"></div>
+
+            <div class="battle-screen__asteroid"></div>
+
+            <div class="battle-screen__health"></div>
+
+            <div class="battle-screen__rocket"></div>
+
+            <div class="battle-screen__bomb"></div> -->
+
 
         </div>
-    </div>
+
+    </main>
 
 
-    <script src="./script.js" type="module"></script>
+    <!-- <script src="./script.js" type="module"></script> -->
 </body>
 
 </html>

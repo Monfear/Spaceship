@@ -10,18 +10,15 @@ $text-color: #e4f5f4;
     padding: 0;
 }
 
-.hide {
-    display: none;
-}
-
 body {
     background-color: black;
     font-family: "Audiowide", sans-serif;
+    cursor: url("./../img/cursor.png"), auto;
 }
 
 .game {
     height: 100vh;
-    background-image: url("./../img/BG.png");
+    background-image: url("./../img/BG1.png");
     background-size: cover;
 }
 
@@ -52,7 +49,7 @@ body {
         background-color: transparent;
         background-size: cover;
         border: none;
-        cursor: pointer;
+        cursor: inherit;
         margin-top: 2%;
         border-radius: 20px;
         outline: none;
@@ -75,17 +72,6 @@ body {
             background-image: url("./../img/Exit_BTN.png");
         }
 
-        // &--settings {
-        //     width: 53px;
-        //     height: 53px;
-        //     border-radius: 10px;
-        //     background-image: url("./../img/Settings_BTN.png");
-
-        //     &:hover {
-        //         box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
-        //     }
-        // }
-
         &--sound {
             width: 53px;
             height: 53px;
@@ -104,4 +90,307 @@ body {
             }
         }
     }
+}
+
+.battle-screen {
+    height: 100vh;
+
+    &__backdrop {
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        background-color: hsla(0, 93%, 16%, 0.5);
+    }
+
+    &__counter {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        color: $text-color;
+        font-size: 6rem;
+    }
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        padding: 1%;
+        opacity: 0;
+        transition: opacity 1s;
+    }
+
+    &__score {
+        color: $text-color;
+        font-size: 1.8rem;
+
+        &__number {
+        }
+    }
+
+    &__life {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__hp-bar {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__hp {
+        width: 49px;
+        height: 41px;
+        background-image: url("./../img/HP_Icon.png");
+    }
+
+    &__armor-bar {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 5%;
+        margin-right: 2%;
+    }
+
+    &__armor {
+        width: 37px;
+        height: 35px;
+        background-image: url("./../img/Armor_Icon.png");
+        margin-left: 2%;
+    }
+
+    &__spaceship {
+        width: 90px;
+        height: 233px;
+        background-image: url("./../img/spaceship_sprites.png");
+        position: fixed;
+        // transform: translateY(55px);
+        // bottom: 0;
+        // left: 50%;
+        animation: spaceship-move 400ms steps(7) infinite;
+        transition: transform 1s;
+    }
+
+    &__shield {
+        width: 140px;
+        height: 140px;
+        position: absolute;
+        background-image: url("./../img/shield_sprites.png");
+        animation: shield-move 2000ms steps(16) infinite;
+
+        left: 200px;
+    }
+
+    &__bullet {
+        width: 45px;
+        height: 45px;
+        position: absolute;
+        background-image: url("./../img/bullet_sprites.png");
+        animation: bullet-move 400ms steps(8) infinite;
+
+        left: 100px;
+        top: 100px;
+    }
+
+    &__enemy1 {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-image: url("./../img/enemy1_sprites.png");
+        animation: enemy1-move 200ms steps(8) infinite;
+    }
+
+    &__enemy2 {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        background-image: url("./../img/enemy2_sprites.png");
+        animation: enemy2-move 200ms steps(8) infinite;
+
+        top: 300px;
+    }
+
+    &__enemy3 {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-image: url("./../img/enemy3_sprites.png");
+        animation: enemy3-move 200ms steps(5) infinite;
+
+        top: 200px;
+    }
+
+    &__spaceship-explosion {
+        width: 340px;
+        height: 340px;
+        position: absolute;
+        background-image: url("./../img/spaceship-explosion_sprites.png");
+        animation: spaceship-explosion-move 2000ms steps(9) infinite;
+
+        top: 400px;
+    }
+
+    &__explosion-big {
+        width: 250px;
+        height: 250px;
+        position: absolute;
+        background-image: url("./../img/explosion-big_sprites.png");
+        animation: explosion-big-move 800ms steps(14) infinite;
+
+        top: 500px;
+    }
+
+    &__explosion-small {
+        width: 130px;
+        height: 130px;
+        position: absolute;
+        background-image: url("./../img/explosion-small_sprites.png");
+        animation: explosion-small-move 800ms steps(14) infinite;
+
+        left: 100px;
+    }
+
+    &__asteroid {
+        width: 118px;
+        height: 120px;
+        position: absolute;
+        background-image: url("./../img/asteroids_sprites.png");
+
+        left: 200px;
+        top: 200px;
+    }
+
+    &__health {
+        width: 70px;
+        height: 70px;
+        position: absolute;
+        background-image: url("./../img/health.png");
+
+        left: 200px;
+        top: 300px;
+    }
+
+    &__rocket {
+        width: 20px;
+        height: 42px;
+        position: absolute;
+        background-image: url("./../img/rocket.png");
+
+        left: 200px;
+        top: 350px;
+    }
+
+    &__bomb {
+        width: 70px;
+        height: 70px;
+        position: absolute;
+        background-image: url("./../img/bombs_sprites.png");
+        animation: bomb-move 1000ms steps(2) infinite;
+
+        left: 200px;
+        top: 400px;
+    }
+}
+
+@keyframes spaceship-move {
+    from {
+        background-position-x: 0px;
+    }
+
+    to {
+        background-position-x: -90px * 7;
+    }
+}
+
+@keyframes enemy1-move {
+    from {
+        background-position-x: 0;
+    }
+
+    to {
+        background-position-x: -100px * 8;
+    }
+}
+
+@keyframes enemy2-move {
+    from {
+        background-position-x: 0;
+    }
+
+    to {
+        background-position-x: -200px * 8;
+    }
+}
+
+@keyframes enemy3-move {
+    from {
+        background-position-x: 0;
+    }
+
+    to {
+        background-position-x: -100px * 5;
+    }
+}
+
+@keyframes spaceship-explosion-move {
+    from {
+        background-position-x: 0;
+    }
+
+    to {
+        background-position-x: -340px * 9;
+    }
+}
+
+@keyframes explosion-big-move {
+    from {
+        background-position-x: 0;
+    }
+
+    to {
+        background-position-x: -250px * 14;
+    }
+}
+
+@keyframes explosion-small-move {
+    from {
+        background-position-x: 0;
+    }
+
+    to {
+        background-position-x: -130px * 14;
+    }
+}
+
+@keyframes bullet-move {
+    from {
+        background-position-x: 0;
+    }
+
+    to {
+        background-position-x: -45px * 8;
+    }
+}
+
+@keyframes shield-move {
+    from {
+        background-position-x: 0;
+    }
+
+    to {
+        background-position-x: -150px * 16;
+    }
+}
+
+@keyframes bomb-move {
+    from {
+        background-position-x: 0;
+    }
+
+    to {
+        background-position-x: -70px * 2;
+    }
+}
+
+.hide {
+    display: none;
 }
