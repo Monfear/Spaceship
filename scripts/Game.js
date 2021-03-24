@@ -9,6 +9,7 @@ export class Game extends Common {
     }
 
     points = 0;
+    level = 1;
 
     init() {
         this.connectDOM();
@@ -24,6 +25,7 @@ export class Game extends Common {
         this.score = this.getElement(this.elementsOfDOM.score);
         this.life = this.getElement(this.elementsOfDOM.life);
         this.scoreNumberEl = this.getElement(this.elementsOfDOM.scoreNumber);
+        this.lvlEl = this.getElement(this.elementsOfDOM.lvlEl);
     }
 
     setupListeners() {}
@@ -88,5 +90,28 @@ export class Game extends Common {
         // this.spaceship.updatePositionLoop();
 
         this.info.style.opacity = 1;
+        this.lvlEl.innerText = `Level ${this.level}`;
+
+        this.lvlEl.hidden = false;
+        this.lvlEl.animate(
+            [
+                {
+                    opacity: 0,
+                    transform: "translate(-50%, -70%)",
+                },
+                {
+                    opacity: 1,
+                    transform: "translate(-50%, -50%)",
+                },
+            ],
+            {
+                duration: 1000,
+                iterations: 1,
+            }
+        );
+
+        setTimeout(() => {
+            this.lvlEl.hidden = true;
+        }, 2000);
     }
 }

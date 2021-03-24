@@ -23,7 +23,7 @@ export class Barrier {
         const interval = setInterval(() => {
             opacity -= 0.1;
             this.element.style.opacity = opacity;
-        }, 100);
+        }, 10);
 
         if (opacity < 0) {
             clearInterval(interval);

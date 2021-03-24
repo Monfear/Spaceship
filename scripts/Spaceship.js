@@ -18,7 +18,7 @@ export class Spaceship extends Common {
     bullets = [];
 
     lives = 3;
-    shields = 3;
+    shields = 1;
 
     init() {
         this.connectDOM();
@@ -89,13 +89,13 @@ export class Spaceship extends Common {
     };
 
     updateMoves() {
-        if (this.isArrowLeft && this.getCurrentPosition() > 10) {
+        if (this.isArrowLeft && this.getCurrentPosition() > 30) {
             this.element.style.left = parseInt(this.element.style.left) - this.moveStep + "px";
 
             if (this.isBarrier) {
                 this.barrier.element.style.left = parseInt(this.element.style.left) - this.moveStep * 2.8 + "px";
             }
-        } else if (this.isArrowRight && this.getCurrentPosition() < window.innerWidth - 10) {
+        } else if (this.isArrowRight && this.getCurrentPosition() < window.innerWidth - 30) {
             this.element.style.left = parseInt(this.element.style.left) + this.moveStep + "px";
 
             if (this.isBarrier) {
@@ -114,6 +114,13 @@ export class Spaceship extends Common {
 
     executeBarrier() {
         console.log("barrier");
+
+        if (this.isBarrier || this.shields <= 0) {
+            return;
+        }
+
+        this.shields--;
+        this.armorBar.lastChild.remove();
 
         this.barrier = new Barrier(this.getCurrentPosition(), this.element.offsetTop, this.area);
         this.isBarrier = true;

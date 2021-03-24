@@ -22,6 +22,7 @@ export class Common {
         score: "[data-score]",
         life: "[data-life]",
         bullet: "[data-bullet]",
+        lvlEl: "[data-lvl]",
     };
 
     getElement(selector) {

@@ -6,7 +6,11 @@ class MainMenu extends Common {
         super();
 
         this.init();
+
+        this.clickAudio = new Audio("./audio/AccessNow.wav");
     }
+
+    isMusic = false;
 
     init() {
         this.connectDOM();
@@ -24,22 +28,24 @@ class MainMenu extends Common {
 
         this.btnStart = this.getElement(this.elementsOfDOM.btnStart);
         this.btnExit = this.getElement(this.elementsOfDOM.btnExit);
+
+        this.allButtons = document.querySelectorAll("button");
     }
 
     setupListeners() {
         // this.pauseStartedSoundRefer = this.pauseStartedSound.bind(this);
         // this.playStartedSoundRefer = this.playStartedSound.bind(this);
         // this.btnSound.addEventListener("click", this.playStartedSoundRefer);
-        this.toggleSoundRef = this.toggleSound.bind(this);
-        this.btnSound.addEventListener("click", this.toggleSoundRef);
+        // this.toggleSoundRef = this.toggleSound.bind(this);
+        // this.btnSound.addEventListener("click", this.toggleSoundRef);
+
+        this.btnSound.addEventListener("click", this.toggleSound);
 
         this.btnExit.addEventListener("click", () => this.exitGame());
         this.btnStart.addEventListener("click", () => this.startGame());
     }
 
-    isMusic = false;
-
-    toggleSound() {
+    toggleSound = () => {
         if (!this.isMusic) {
             this.isMusic = true;
 
@@ -47,18 +53,18 @@ class MainMenu extends Common {
 
             this.audioStarted.play();
 
-            this.btnSound.removeEventListener("click", this.playStartedSoundRefer);
-            this.btnSound.addEventListener("click", this.pauseStartedSoundRefer);
+            // this.btnSound.removeEventListener("click", this.playStartedSoundRefer);
+            // this.btnSound.addEventListener("click", this.pauseStartedSoundRefer);
         } else {
             this.isMusic = false;
 
             this.divSoundLine.classList.remove("hide");
             this.audioStarted.pause();
 
-            this.btnSound.removeEventListener("click", this.pauseStartedSoundRefer);
-            this.btnSound.addEventListener("click", this.playStartedSoundRefer);
+            // this.btnSound.removeEventListener("click", this.pauseStartedSoundRefer);
+            // this.btnSound.addEventListener("click", this.playStartedSoundRefer);
         }
-    }
+    };
 
     // playStartedSound() {
     //     this.divSoundLine.classList.add("hide");
@@ -77,6 +83,8 @@ class MainMenu extends Common {
     // }
 
     startGame() {
+        this.clickAudio.play();
+
         let opacity = 1;
 
         const interval = setInterval(() => {
@@ -101,6 +109,7 @@ class MainMenu extends Common {
     }
 
     exitGame() {
+        this.clickAudio.play();
         window.close();
     }
 }
