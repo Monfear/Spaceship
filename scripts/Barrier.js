@@ -25,7 +25,7 @@ export class Barrier {
             this.element.style.opacity = opacity;
         }, 10);
 
-        if (opacity < 0) {
+        if (opacity <= 0) {
             clearInterval(interval);
             this.element.remove();
         }

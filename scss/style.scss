@@ -187,7 +187,7 @@ body {
     &__shield {
         width: 140px;
         height: 140px;
-        position: absolute;
+        position: fixed;
         background-image: url("./../img/shield_sprites.png");
         animation: shield-move 2000ms steps(16) infinite;
 
@@ -208,7 +208,7 @@ body {
     &__enemy1 {
         width: 100px;
         height: 100px;
-        position: absolute;
+        position: fixed;
         background-image: url("./../img/enemy1_sprites.png");
         animation: enemy1-move 200ms steps(8) infinite;
     }
@@ -216,7 +216,7 @@ body {
     &__enemy2 {
         width: 200px;
         height: 200px;
-        position: absolute;
+        position: fixed;
         background-image: url("./../img/enemy2_sprites.png");
         animation: enemy2-move 200ms steps(8) infinite;
 
@@ -226,7 +226,7 @@ body {
     &__enemy3 {
         width: 100px;
         height: 100px;
-        position: absolute;
+        position: fixed;
         background-image: url("./../img/enemy3_sprites.png");
         animation: enemy3-move 200ms steps(5) infinite;
 
@@ -236,7 +236,7 @@ body {
     &__spaceship-explosion {
         width: 340px;
         height: 340px;
-        position: absolute;
+        position: fixed;
         background-image: url("./../img/spaceship-explosion_sprites.png");
         animation: spaceship-explosion-move 2000ms steps(9) infinite;
 
@@ -246,7 +246,7 @@ body {
     &__explosion-big {
         width: 250px;
         height: 250px;
-        position: absolute;
+        position: fixed;
         background-image: url("./../img/explosion-big_sprites.png");
         animation: explosion-big-move 800ms steps(14) infinite;
 
@@ -256,7 +256,7 @@ body {
     &__explosion-small {
         width: 130px;
         height: 130px;
-        position: absolute;
+        position: fixed;
         background-image: url("./../img/explosion-small_sprites.png");
         animation: explosion-small-move 800ms steps(14) infinite;
 
@@ -266,7 +266,7 @@ body {
     &__asteroid {
         width: 118px;
         height: 120px;
-        position: absolute;
+        position: fixed;
         background-image: url("./../img/asteroids_sprites.png");
 
         left: 200px;
@@ -276,7 +276,7 @@ body {
     &__health {
         width: 70px;
         height: 70px;
-        position: absolute;
+        position: fixed;
         background-image: url("./../img/health.png");
 
         left: 200px;
@@ -286,7 +286,7 @@ body {
     &__rocket {
         width: 20px;
         height: 42px;
-        position: absolute;
+        position: fixed;
         background-image: url("./../img/rocket.png");
 
         left: 200px;
@@ -296,7 +296,7 @@ body {
     &__bomb {
         width: 70px;
         height: 70px;
-        position: absolute;
+        position: fixed;
         background-image: url("./../img/bombs_sprites.png");
         animation: bomb-move 1000ms steps(2) infinite;
 

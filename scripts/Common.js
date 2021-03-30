@@ -14,6 +14,7 @@ export class Common {
 
         // battle area
         battleScreen: "[data-battle-screen]",
+        backdrop: "[data-backdrop]",
         counter: "[data-counter]",
         hpBar: "[data-hp-bar]",
         armorBar: "[data-armor-bar]",

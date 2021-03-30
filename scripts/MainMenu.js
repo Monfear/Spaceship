@@ -7,7 +7,7 @@ class MainMenu extends Common {
 
         this.init();
 
-        this.clickAudio = new Audio("./audio/AccessNow.wav");
+        this.clickAudio = new Audio("./audio/SelectMenuItemOrHover.wav");
     }
 
     isMusic = false;
@@ -29,7 +29,7 @@ class MainMenu extends Common {
         this.btnStart = this.getElement(this.elementsOfDOM.btnStart);
         this.btnExit = this.getElement(this.elementsOfDOM.btnExit);
 
-        this.allButtons = document.querySelectorAll("button");
+        // this.allButtons = document.querySelectorAll("button");
     }
 
     setupListeners() {

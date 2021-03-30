@@ -217,7 +217,7 @@ body {
 .battle-screen__shield {
   width: 140px;
   height: 140px;
-  position: absolute;
+  position: fixed;
   background-image: url("./../img/shield_sprites.png");
   -webkit-animation: shield-move 2000ms steps(16) infinite;
           animation: shield-move 2000ms steps(16) infinite;
@@ -238,7 +238,7 @@ body {
 .battle-screen__enemy1 {
   width: 100px;
   height: 100px;
-  position: absolute;
+  position: fixed;
   background-image: url("./../img/enemy1_sprites.png");
   -webkit-animation: enemy1-move 200ms steps(8) infinite;
           animation: enemy1-move 200ms steps(8) infinite;
@@ -247,7 +247,7 @@ body {
 .battle-screen__enemy2 {
   width: 200px;
   height: 200px;
-  position: absolute;
+  position: fixed;
   background-image: url("./../img/enemy2_sprites.png");
   -webkit-animation: enemy2-move 200ms steps(8) infinite;
           animation: enemy2-move 200ms steps(8) infinite;
@@ -257,7 +257,7 @@ body {
 .battle-screen__enemy3 {
   width: 100px;
   height: 100px;
-  position: absolute;
+  position: fixed;
   background-image: url("./../img/enemy3_sprites.png");
   -webkit-animation: enemy3-move 200ms steps(5) infinite;
           animation: enemy3-move 200ms steps(5) infinite;
@@ -267,7 +267,7 @@ body {
 .battle-screen__spaceship-explosion {
   width: 340px;
   height: 340px;
-  position: absolute;
+  position: fixed;
   background-image: url("./../img/spaceship-explosion_sprites.png");
   -webkit-animation: spaceship-explosion-move 2000ms steps(9) infinite;
           animation: spaceship-explosion-move 2000ms steps(9) infinite;
@@ -277,7 +277,7 @@ body {
 .battle-screen__explosion-big {
   width: 250px;
   height: 250px;
-  position: absolute;
+  position: fixed;
   background-image: url("./../img/explosion-big_sprites.png");
   -webkit-animation: explosion-big-move 800ms steps(14) infinite;
           animation: explosion-big-move 800ms steps(14) infinite;
@@ -287,7 +287,7 @@ body {
 .battle-screen__explosion-small {
   width: 130px;
   height: 130px;
-  position: absolute;
+  position: fixed;
   background-image: url("./../img/explosion-small_sprites.png");
   -webkit-animation: explosion-small-move 800ms steps(14) infinite;
           animation: explosion-small-move 800ms steps(14) infinite;
@@ -297,7 +297,7 @@ body {
 .battle-screen__asteroid {
   width: 118px;
   height: 120px;
-  position: absolute;
+  position: fixed;
   background-image: url("./../img/asteroids_sprites.png");
   left: 200px;
   top: 200px;
@@ -306,7 +306,7 @@ body {
 .battle-screen__health {
   width: 70px;
   height: 70px;
-  position: absolute;
+  position: fixed;
   background-image: url("./../img/health.png");
   left: 200px;
   top: 300px;
@@ -315,7 +315,7 @@ body {
 .battle-screen__rocket {
   width: 20px;
   height: 42px;
-  position: absolute;
+  position: fixed;
   background-image: url("./../img/rocket.png");
   left: 200px;
   top: 350px;
@@ -324,7 +324,7 @@ body {
 .battle-screen__bomb {
   width: 70px;
   height: 70px;
-  position: absolute;
+  position: fixed;
   background-image: url("./../img/bombs_sprites.png");
   -webkit-animation: bomb-move 1000ms steps(2) infinite;
           animation: bomb-move 1000ms steps(2) infinite;
