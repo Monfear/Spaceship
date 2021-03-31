@@ -2,6 +2,34 @@
 
 $text-color: #e4f5f4;
 
+@mixin window {
+    width: 640px;
+    height: 480px;
+    background-image: url("./../img/Window.png");
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin btnSmall {
+    width: 53px;
+    height: 53px;
+    border-radius: 10px;
+    border: none;
+    background-size: cover;
+    cursor: pointer;
+    background-color: transparent;
+    cursor: inherit;
+    transition: all 0.2s;
+
+    &:hover {
+        box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
+        transform: scale(1.05);
+    }
+}
+
 *,
 *::after,
 *::before {
@@ -23,14 +51,15 @@ body {
 }
 
 .start-screen {
-    width: 640px;
-    height: 480px;
-    background-image: url("./../img/Window.png");
+    // width: 640px;
+    // height: 480px;
+    // background-image: url("./../img/Window.png");
 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    @include window();
 
     display: flex;
     flex-direction: column;
@@ -73,9 +102,7 @@ body {
         }
 
         &--sound {
-            width: 53px;
-            height: 53px;
-            border-radius: 10px;
+            @include btnSmall();
             background-image: url("./../img/Sound_BTN.png");
 
             &__line {
@@ -85,15 +112,77 @@ body {
                 transform: rotate(-50deg);
             }
 
-            &:hover {
-                box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
-            }
+            // &:hover {
+            //     box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
+            // }
         }
     }
 }
 
 .battle-screen {
     height: 100vh;
+
+    &__result-modal {
+        @include window;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        color: $text-color;
+    }
+
+    &__buttonsResult {
+        display: flex;
+    }
+
+    &__button {
+        @include btnSmall();
+        // margin-top: 20%;
+        margin: 1rem 0.5rem;
+
+        &--menu {
+            background-image: url("./../img/Menu_BTN.png");
+        }
+
+        &--leaderboard {
+            background-image: url("./../img/Rating_BTN.png");
+        }
+
+        &--exit {
+            background-image: url("./../img/Close_BTN.png");
+        }
+    }
+
+    &__leaderboard-modal {
+        @include window;
+
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: flex-start;
+        // align-items: center;
+
+        color: $text-color;
+    }
+
+    &__buttonsLeaderboard {
+        position: absolute;
+        bottom: 2rem;
+        left: 39%;
+    }
+
+    &__leaderboard-name {
+        margin-top: 2%;
+        margin-bottom: 5%;
+        text-align: center;
+    }
+
+    &__player-ranking {
+        display: flex;
+        margin-left: 3rem;
+        margin-top: 0.5rem;
+    }
 
     &__backdrop {
         position: absolute;

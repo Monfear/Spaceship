@@ -24,6 +24,18 @@ export class Common {
         life: "[data-life]",
         bullet: "[data-bullet]",
         lvlEl: "[data-lvl]",
+
+        // modal result
+        modalResult: "[data-result-modal]",
+        finalScore: "[data-final-score]",
+        btnMenu: "[data-btn-menu]",
+        btnExit2: "[data-btn-exit2]",
+        btnLeaderboard: "[data-btn-leaderboard]",
+
+        // modal leaderboard
+        modalLeaderboard: "[data-leaderboard-modal]",
+        btnMenuLeaderboard: "[data-btn-menu-leaderboard]",
+        btnExit2Leaderboard: "[data-btn-exit2-leaderboard]",
     };
 
     getElement(selector) {

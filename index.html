@@ -27,6 +27,39 @@
         <div class="battle-screen" data-battle-screen>
             <div class="battle-screen__backdrop" data-backdrop hidden></div>
 
+            <div class="battle-screen__result-modal hide" data-result-modal>
+                <h1>Your score</h1>
+                <h2 data-final-score></h2>
+
+                <div class="battle-screen__buttonsResult">
+                    <button class="battle-screen__button battle-screen__button--menu" data-btn-menu></button>
+                    <button class="battle-screen__button battle-screen__button--exit" data-btn-exit2></button>
+                    <button class="battle-screen__button battle-screen__button--leaderboard"
+                            data-btn-leaderboard></button>
+                </div>
+            </div>
+
+            <div class="battle-screen__leaderboard-modal hide" data-leaderboard-modal>
+                <h1 class="battle-screen__leaderboard-name">LEADERBOARD</h1>
+                <div class="battle-screen__player-ranking">
+                    <h2>1.&nbsp;</h2>
+                    <h2>Patryk&nbsp;</h2>
+                    <h2> - <span>1000</span> points</h2>
+                </div>
+                <div class="battle-screen__player-ranking">
+                    <h2>2.&nbsp;</h2>
+                    <h2>Klaldia&nbsp;</h2>
+                    <h2> - <span>1000</span>&nbsp;points</h2>
+                </div>
+
+                <div class="battle-screen__buttonsLeaderboard">
+                    <button class="battle-screen__button battle-screen__button--menu"
+                            data-btn-menu-leaderboard></button>
+                    <button class="battle-screen__button battle-screen__button--exit"
+                            data-btn-exit2-leaderboard></button>
+                </div>
+            </div>
+
             <h1 class="battle-screen__counter" data-counter></h1>
 
             <section class="battle-screen__info" data-info>

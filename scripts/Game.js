@@ -1,5 +1,7 @@
 import { Common } from "./Common.js";
 import { Enemy } from "./Enemy.js";
+import { Leaderboard } from "./LeaderBoardModal.js";
+import { ResultModal } from "./ResultModal.js";
 import { Spaceship } from "./Spaceship.js";
 
 export class Game extends Common {
@@ -223,6 +225,7 @@ export class Game extends Common {
         this.scoreNumberEl.innerText = this.points;
 
         this.updateResist();
+        this.endGame();
     }
 
     updateResist() {
@@ -243,5 +246,12 @@ export class Game extends Common {
 
     endGame() {
         console.log("endGame");
+
+        // const resultModal = new ResultModal();
+        // resultModal.element.classList.remove("hide");
+        // resultModal.finalScore.innerText = this.points;
+
+        const leaderBoardModal = new Leaderboard();
+        leaderBoardModal.element.classList.remove("hide");
     }
 }
