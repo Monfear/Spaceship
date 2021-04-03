@@ -28,8 +28,6 @@ export class Common {
         // modal result
         modalResult: "[data-result-modal]",
         finalScore: "[data-final-score]",
-        btnMenu: "[data-btn-menu]",
-        btnExit2: "[data-btn-exit2]",
         btnLeaderboard: "[data-btn-leaderboard]",
 
         // modal leaderboard

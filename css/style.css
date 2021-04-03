@@ -51,24 +51,34 @@ body {
 }
 
 .start-screen__button {
-  width: 300px;
-  height: 85px;
+  width: 53px;
+  height: 53px;
   background-color: transparent;
   background-size: cover;
   border: none;
+  border-radius: 10px;
   cursor: inherit;
-  margin-top: 2%;
-  border-radius: 20px;
   outline: none;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  width: 300px;
+  height: 85px;
+  margin-top: 2%;
+  border-radius: 20px;
+}
+
+.start-screen__button:hover {
+  -webkit-box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
+          box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 .start-screen__button:hover {
   -webkit-box-shadow: 0 0 20px 5px white, 0 0 5px 9px inset white;
           box-shadow: 0 0 20px 5px white, 0 0 5px 9px inset white;
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
 }
 
 .start-screen__button:active {
@@ -87,12 +97,12 @@ body {
 .start-screen__button--sound {
   width: 53px;
   height: 53px;
-  border-radius: 10px;
-  border: none;
-  background-size: cover;
-  cursor: pointer;
   background-color: transparent;
+  background-size: cover;
+  border: none;
+  border-radius: 10px;
   cursor: inherit;
+  outline: none;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   background-image: url("./../img/Sound_BTN.png");
@@ -113,11 +123,7 @@ body {
           transform: rotate(-50deg);
 }
 
-.battle-screen {
-  height: 100vh;
-}
-
-.battle-screen__result-modal {
+.modal-result {
   width: 640px;
   height: 480px;
   background-image: url("./../img/Window.png");
@@ -133,55 +139,65 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   color: #e4f5f4;
 }
 
-.battle-screen__buttonsResult {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.battle-screen__button {
+.modal-result__button {
   width: 53px;
   height: 53px;
-  border-radius: 10px;
-  border: none;
-  background-size: cover;
-  cursor: pointer;
   background-color: transparent;
+  background-size: cover;
+  border: none;
+  border-radius: 10px;
   cursor: inherit;
+  outline: none;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-  margin: 1rem 0.5rem;
 }
 
-.battle-screen__button:hover {
+.modal-result__button:hover {
   -webkit-box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
           box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
 
-.battle-screen__button--menu {
-  background-image: url("./../img/Menu_BTN.png");
-}
-
-.battle-screen__button--leaderboard {
+.modal-result__button--leaderboard {
   background-image: url("./../img/Rating_BTN.png");
+  margin: 1rem 0.5rem;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
-.battle-screen__button--exit {
-  background-image: url("./../img/Close_BTN.png");
+.modal-result__input-player-name {
+  font-size: 1.6rem;
+  color: #3a4c9b;
+  text-align: center;
+  font-weight: bold;
+  font-family: inherit;
+  margin-top: 0.5rem;
+  border-radius: 10px;
+  outline: none;
+  background-color: #e5f0ff;
+  padding: 0.4rem 0;
 }
 
-.battle-screen__leaderboard-modal {
+.modal-result__trophy {
+  width: 160px;
+  margin: 1rem 0;
+}
+
+.modal-result__info-name {
+  margin-top: 1rem;
+}
+
+.modal-leaderboard {
   width: 640px;
   height: 480px;
   background-image: url("./../img/Window.png");
@@ -193,24 +209,63 @@ body {
   color: #e4f5f4;
 }
 
-.battle-screen__buttonsLeaderboard {
-  position: absolute;
-  bottom: 2rem;
-  left: 39%;
-}
-
-.battle-screen__leaderboard-name {
+.modal-leaderboard__title {
   margin-top: 2%;
   margin-bottom: 5%;
   text-align: center;
 }
 
-.battle-screen__player-ranking {
+.modal-leaderboard__buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-left: 3rem;
-  margin-top: 0.5rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 2rem;
+}
+
+.modal-leaderboard__button {
+  width: 53px;
+  height: 53px;
+  background-color: transparent;
+  background-size: cover;
+  border: none;
+  border-radius: 10px;
+  cursor: inherit;
+  outline: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  margin-right: 0.5rem;
+}
+
+.modal-leaderboard__button:hover {
+  -webkit-box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
+          box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.modal-leaderboard__button--menu {
+  background-image: url("./../img/Menu_BTN.png");
+}
+
+.modal-leaderboard__button--exit {
+  background-image: url("./../img/Close_BTN.png");
+}
+
+.modal-leaderboard__player-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 80%;
+  margin: 0.5rem auto;
+  background-color: rgba(94, 171, 247, 0.2);
+  padding: 0.5rem 1rem;
+}
+
+.battle-screen {
+  height: 100vh;
 }
 
 .battle-screen__backdrop {

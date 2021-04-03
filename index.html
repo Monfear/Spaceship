@@ -27,35 +27,54 @@
         <div class="battle-screen" data-battle-screen>
             <div class="battle-screen__backdrop" data-backdrop hidden></div>
 
-            <div class="battle-screen__result-modal hide" data-result-modal>
-                <h1>Your score</h1>
-                <h2 data-final-score></h2>
+            <div class="modal-result hide" data-result-modal>
+                <img class="modal-result__trophy" src="./img/trophy.png" alt="trophy">
+                <h2>Congrats! Your score</h2>
+                <h1 data-final-score>100</h1>
+                <h2 class="modal-result__info-name">Enter your name on leaderboard.</h2>
 
-                <div class="battle-screen__buttonsResult">
-                    <button class="battle-screen__button battle-screen__button--menu" data-btn-menu></button>
-                    <button class="battle-screen__button battle-screen__button--exit" data-btn-exit2></button>
-                    <button class="battle-screen__button battle-screen__button--leaderboard"
-                            data-btn-leaderboard></button>
-                </div>
+                <form action="">
+                    <input class="modal-result__input-player-name" type="text">
+                </form>
+
+                <button class="modal-result__button modal-result__button--leaderboard"
+                        data-btn-leaderboard></button>
             </div>
 
-            <div class="battle-screen__leaderboard-modal hide" data-leaderboard-modal>
-                <h1 class="battle-screen__leaderboard-name">LEADERBOARD</h1>
-                <div class="battle-screen__player-ranking">
+
+            <div class="modal-leaderboard hide" data-leaderboard-modal>
+                <h1 class="modal-leaderboard__title">LEADERBOARD</h1>
+
+                <div class="modal-leaderboard__player-name">
                     <h2>1.&nbsp;</h2>
-                    <h2>Patryk&nbsp;</h2>
-                    <h2> - <span>1000</span> points</h2>
+                    <h2 data-player-rank>Patryk&nbsp;</h2>
+                    <h2>&nbsp;-&nbsp;<span data-points-rank>100000</span>&nbsp;points</h2>
                 </div>
-                <div class="battle-screen__player-ranking">
+                <div class="modal-leaderboard__player-name">
                     <h2>2.&nbsp;</h2>
-                    <h2>Klaldia&nbsp;</h2>
-                    <h2> - <span>1000</span>&nbsp;points</h2>
+                    <h2 data-player-rank>&nbsp;</h2>
+                    <h2>&nbsp;-&nbsp;<span data-points-rank></span>&nbsp;points</h2>
+                </div>
+                <div class="modal-leaderboard__player-name">
+                    <h2>3.&nbsp;</h2>
+                    <h2 data-player-rank>&nbsp;</h2>
+                    <h2>&nbsp;-&nbsp;<span data-points-rank></span>&nbsp;points</h2>
+                </div>
+                <div class="modal-leaderboard__player-name">
+                    <h2>4.&nbsp;</h2>
+                    <h2 data-player-rank>&nbsp;</h2>
+                    <h2>&nbsp;-&nbsp;<span data-points-rank></span>&nbsp;points</h2>
+                </div>
+                <div class="modal-leaderboard__player-name">
+                    <h2>5.&nbsp;</h2>
+                    <h2 data-player-rank>&nbsp;</h2>
+                    <h2>&nbsp;-&nbsp;<span data-points-rank></span>&nbsp;points</h2>
                 </div>
 
-                <div class="battle-screen__buttonsLeaderboard">
-                    <button class="battle-screen__button battle-screen__button--menu"
+                <div class="modal-leaderboard__buttons">
+                    <button class="modal-leaderboard__button modal-leaderboard__button--menu"
                             data-btn-menu-leaderboard></button>
-                    <button class="battle-screen__button battle-screen__button--exit"
+                    <button class="modal-leaderboard__button modal-leaderboard__button--exit"
                             data-btn-exit2-leaderboard></button>
                 </div>
             </div>
