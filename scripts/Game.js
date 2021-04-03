@@ -1,7 +1,7 @@
 import { Common } from "./Common.js";
 import { Enemy } from "./Enemy.js";
-import { Leaderboard } from "./LeaderBoardModal.js";
-import { ResultModal } from "./ResultModal.js";
+import { Leaderboard } from "./Leaderboard.js";
+import { ResultModal } from "./Result.js";
 import { Spaceship } from "./Spaceship.js";
 
 export class Game extends Common {
