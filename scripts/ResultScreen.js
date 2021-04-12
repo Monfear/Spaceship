@@ -1,6 +1,7 @@
 import { Common } from "./Common.js";
+import { Leaderboard } from "./Leaderboard.js";
 
-export class ResultModal extends Common {
+export class ResultScreen extends Common {
     constructor() {
         super();
 
@@ -19,6 +20,13 @@ export class ResultModal extends Common {
     }
 
     setupListeners() {
-        this.btnLeaderBoard.addEventListener("click", () => console.log("leaderboard"));
+        this.btnLeaderBoard.addEventListener("click", this.changeToLeaderboard);
     }
+
+    changeToLeaderboard = () => {
+        this.element.classList.add("hide");
+
+        const leaderboardScreen = new Leaderboard();
+        leaderboardScreen.element.classList.remove("hide");
+    };
 }

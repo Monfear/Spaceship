@@ -1,7 +1,7 @@
 import { Common } from "./Common.js";
 import { Enemy } from "./Enemy.js";
 import { Leaderboard } from "./Leaderboard.js";
-import { ResultModal } from "./Result.js";
+import { ResultScreen } from "./ResultScreen.js";
 import { Spaceship } from "./Spaceship.js";
 
 export class Game extends Common {
@@ -19,6 +19,9 @@ export class Game extends Common {
 
     checkPositionsInterval = null;
     checkPositionSpeedInterval = 200;
+
+    insertEnemyInterval = null;
+    insertEnemySpeedInterval = 1000;
 
     enemyType = null;
 
@@ -38,6 +41,7 @@ export class Game extends Common {
         this.life = this.getElement(this.elementsOfDOM.life);
         this.scoreNumberEl = this.getElement(this.elementsOfDOM.scoreNumber);
         this.lvlEl = this.getElement(this.elementsOfDOM.lvlEl);
+        this.gameOverEl = this.getElement(this.elementsOfDOM.gameOverEl);
     }
 
     setupListeners() {}
@@ -45,7 +49,7 @@ export class Game extends Common {
     countToStart() {
         const audio = new Audio("./audio/battle.wav");
         audio.playbackRate = 0.9;
-        // audio.play();
+        audio.play();
 
         let number = 5;
 
@@ -97,7 +101,7 @@ export class Game extends Common {
 
     setFirstLevel() {
         this.spaceship.element.style.transform = "translateY(55px)";
-        this.spaceship.actionListeners();
+        // this.spaceship.actionListeners();
 
         // this.spaceship.updateMoves();
         // this.spaceship.updatePositionLoop();
@@ -131,7 +135,9 @@ export class Game extends Common {
 
     playFirstLevel() {
         console.log("play");
-        this.drawEnemy();
+        // this.drawEnemy();
+
+        this.insertEnemyInterval = setInterval(() => this.drawEnemy(), this.insertEnemySpeedInterval);
 
         this.checkPositionsInterval = setInterval(() => this.checkPositions(), this.checkPositionSpeedInterval);
     }
@@ -245,13 +251,32 @@ export class Game extends Common {
     }
 
     endGame() {
-        console.log("endGame");
+        window.removeEventListener("keydown", this.spaceship.keydownActionsRefer);
+        window.removeEventListener("keyup", this.spaceship.keyupActionsRefer);
 
-        // const resultModal = new ResultModal();
-        // resultModal.element.classList.remove("hide");
-        // resultModal.finalScore.innerText = this.points;
+        this.spaceship.element.classList.remove("battle-screen__spaceship");
+        this.spaceship.element.classList.add("battle-screen__spaceship-explosion");
 
-        const leaderBoardModal = new Leaderboard();
-        leaderBoardModal.element.classList.remove("hide");
+        clearInterval(this.checkPositionsInterval);
+        clearInterval(this.insertEnemyInterval);
+
+        this.gameOverEl.classList.remove("hide");
+
+        setTimeout(() => {
+            this.spaceship.element.remove();
+        }, 2000);
+
+        this.enemies.forEach((enemy) => {
+            enemy.makeExplosion();
+        });
+
+        this.enemies.length = 0;
+
+        const resultScreen = new ResultScreen();
+        resultScreen.element.classList.remove("hide");
+        resultScreen.finalScore.innerText = this.points;
+
+        // const leaderboardScreen = new Leaderboard();
+        // leaderboardScreen.element.classList.remove("hide");
     }
 }

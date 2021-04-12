@@ -44,7 +44,7 @@ body {
           align-items: center;
 }
 
-.start-screen__name {
+.start-screen__title {
   margin-top: 2%;
   margin-bottom: 13%;
   color: #e4f5f4;
@@ -266,6 +266,16 @@ body {
 
 .battle-screen {
   height: 100vh;
+}
+
+.battle-screen__game-over {
+  color: #e4f5f4;
+  font-size: 3rem;
+  position: fixed;
+  left: 50%;
+  top: 5%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .battle-screen__backdrop {

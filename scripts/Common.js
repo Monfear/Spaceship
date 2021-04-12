@@ -24,6 +24,7 @@ export class Common {
         life: "[data-life]",
         bullet: "[data-bullet]",
         lvlEl: "[data-lvl]",
+        gameOverEl: "[data-game-over]",
 
         // modal result
         modalResult: "[data-result-modal]",
