@@ -143,16 +143,12 @@ export class Spaceship extends Common {
     }
 
     executeShot() {
-        console.log("shot");
-
         const bullet = new Bullet(this.getCurrentPosition(), this.element.offsetTop, this.area);
         bullet.init();
         this.bullets.push(bullet);
     }
 
     executeBarrier() {
-        console.log("barrier");
-
         if (this.isBarrier || this.shields <= 0) {
             return;
         }

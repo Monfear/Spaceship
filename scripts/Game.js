@@ -3,6 +3,7 @@ import { Enemy } from "./Enemy.js";
 import { Leaderboard } from "./Leaderboard.js";
 import { ResultScreen } from "./ResultScreen.js";
 import { Spaceship } from "./Spaceship.js";
+import { Survivals } from "./Survivals.js";
 
 export class Game extends Common {
     constructor() {
@@ -21,7 +22,13 @@ export class Game extends Common {
     checkPositionSpeedInterval = 200;
 
     insertEnemyInterval = null;
-    insertEnemySpeedInterval = 1000;
+    insertEnemySpeedInterval = 5000;
+
+    survivalItems = [];
+    survivalItemsSpeed = 30;
+
+    insertSurvivalItemInterval = null;
+    insertSurvivalItemSpeedInterval = 5000;
 
     enemyType = null;
 
@@ -134,26 +141,28 @@ export class Game extends Common {
     }
 
     playFirstLevel() {
-        console.log("play");
-        // this.drawEnemy();
-
         this.insertEnemyInterval = setInterval(() => this.drawEnemy(), this.insertEnemySpeedInterval);
+
+        this.insertSurvivalItemInterval = setInterval(() => this.drawSurvivalItem(), this.insertSurvivalItemSpeedInterval);
 
         this.checkPositionsInterval = setInterval(() => this.checkPositions(), this.checkPositionSpeedInterval);
     }
 
     drawEnemy() {
         const randomNum = Math.floor(Math.random() * 11) + 1;
+        console.log(randomNum);
 
         if (randomNum === 11) {
-            this.insertEnemy(this.battleScreen, this.enemiesSpeedInterval * 2, "battle-screen__enemy2", "battle-screen__explosion-big", 8);
-            this.enemyType = 0;
-        } else if (randomNum % 2 === 0) {
-            this.insertEnemy(this.battleScreen, this.enemiesSpeedInterval * 1.4, "battle-screen__enemy1", "battle-screen__explosion-small", 3);
-            this.enemyType = 1;
-        } else {
-            this.insertEnemy(this.battleScreen, this.enemiesSpeedInterval, "battle-screen__enemy3", "battle-screen__explosion-small", 1);
+            this.insertEnemy(this.battleScreen, this.enemiesSpeedInterval * 2, "battle-screen__enemy2", "battle-screen__explosion-big", 8, 50);
+            this.enemyType = 11;
+        }
+
+        if (randomNum % 2 === 0 && randomNum !== 11) {
+            this.insertEnemy(this.battleScreen, this.enemiesSpeedInterval * 1.4, "battle-screen__enemy1", "battle-screen__explosion-small", 3, 20);
             this.enemyType = 2;
+        } else if (randomNum % 2 !== 0 && randomNum !== 11) {
+            this.insertEnemy(this.battleScreen, this.enemiesSpeedInterval, "battle-screen__enemy3", "battle-screen__explosion-small", 1, 10);
+            this.enemyType = 3;
         }
     }
 
@@ -163,8 +172,26 @@ export class Game extends Common {
         this.enemies.push(enemy);
     }
 
+    drawSurvivalItem() {
+        const randomNum = Math.floor(Math.random() * 3) + 1;
+
+        if (randomNum === 1) {
+            this.insertSurvivalItem(this.battleScreen, "battle-screen__health", "+", this.survivalItemsSpeed);
+        } else if (randomNum === 2) {
+            this.insertSurvivalItem(this.battleScreen, "battle-screen__asteroid", "-", this.survivalItemsSpeed);
+        } else if (randomNum === 3) {
+            this.insertSurvivalItem(this.battleScreen, "battle-screen__bomb", "-", this.survivalItemsSpeed);
+        }
+    }
+
+    insertSurvivalItem(...attr) {
+        const item = new Survivals(...attr);
+        item.init();
+        this.survivalItems.push(item);
+    }
+
     checkPositions() {
-        console.log("check position");
+        // console.log("check position");
         this.enemies.forEach((enemy, enemyIdx, enemiesArr) => {
             const enemyCoordinates = {
                 top: enemy.element.offsetTop,
@@ -173,10 +200,11 @@ export class Game extends Common {
                 right: enemy.element.offsetLeft + enemy.element.offsetWidth,
             };
 
+            // outside the screen
             if (enemyCoordinates.bottom - enemy.element.offsetHeight / 2 > window.innerHeight) {
                 enemy.makeExplosion();
                 enemiesArr.splice(enemyIdx, 1);
-                // this.updateLives();
+                this.removeHealth();
             }
 
             this.spaceship.bullets.forEach((bullet, bulletIdx, bulletArr) => {
@@ -188,13 +216,18 @@ export class Game extends Common {
                 };
 
                 // if (bulletCoordinates.top <= enemyCoordinates.bottom - enemy.element.offsetHeight / 5 && bulletCoordinates.bottom >= enemyCoordinates.top && bulletCoordinates.right >= enemyCoordinates.left + enemy.element.offsetWidth / 4 && bulletCoordinates.left <= enemyCoordinates.right - enemy.element.offsetWidth / 4) {
+
+                // checking cross points
                 if (bulletCoordinates.top <= enemyCoordinates.bottom - enemy.element.offsetHeight / 5 && bulletCoordinates.right >= enemyCoordinates.left + enemy.element.offsetWidth / 4 && bulletCoordinates.left <= enemyCoordinates.right - enemy.element.offsetWidth / 4) {
-                    console.log("trafiony");
                     enemy.getDamaged();
 
                     if (!enemy.lives) {
+                        this.points += enemy.points;
+                        this.scoreNumberEl.innerText = this.points;
+
                         enemiesArr.splice(enemyIdx, 1);
-                        this.updatePoints();
+
+                        // this.updatePoints();
                     }
 
                     bulletArr.splice(bulletIdx, 1);
@@ -206,38 +239,37 @@ export class Game extends Common {
 
         this.spaceship.bullets.forEach((bullet, bulletIdx, bulletArr) => {
             if (bullet.element.offsetTop + bullet.element.offsetHeight < 0) {
-                console.log("delete bullet");
                 bulletArr.splice(bulletIdx, 1);
                 bullet.element.remove();
             }
         });
     }
 
-    updatePoints() {
-        switch (this.enemyType) {
-            case 0:
-                this.points += 50;
-                break;
-            case 1:
-                this.points += 20;
-                break;
-            case 2:
-                this.points += 10;
-                break;
-            default:
-                break;
-        }
+    // updatePoints() {
+    //     switch (this.enemyType) {
+    //         case 11:
+    //             this.points += 50;
+    //             break;
+    //         case 2:
+    //             this.points += 20;
+    //             break;
+    //         case 3:
+    //             this.points += 10;
+    //             break;
+    //         default:
+    //             break;
+    //     }
 
-        this.scoreNumberEl.innerText = this.points;
+    //     this.scoreNumberEl.innerText = this.points;
 
-        this.updateResist();
-        this.endGame();
-    }
+    //     // this.updateResist();
+    //     // this.endGame();
+    // }
 
-    updateResist() {
-        if (this.spaceship.isBarrier) {
-            return;
-        }
+    removeHealth() {
+        // if (this.spaceship.isBarrier) {
+        //     return;
+        // }
 
         this.spaceship.lives--;
         this.spaceship.hpBar.children[0].remove();
@@ -250,6 +282,10 @@ export class Game extends Common {
         }
     }
 
+    addHealth() {
+        console.log("add health()");
+    }
+
     endGame() {
         window.removeEventListener("keydown", this.spaceship.keydownActionsRefer);
         window.removeEventListener("keyup", this.spaceship.keyupActionsRefer);
@@ -259,6 +295,7 @@ export class Game extends Common {
 
         clearInterval(this.checkPositionsInterval);
         clearInterval(this.insertEnemyInterval);
+        clearInterval(this.insertSurvivalItemInterval);
 
         this.gameOverEl.classList.remove("hide");
 

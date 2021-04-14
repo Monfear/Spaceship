@@ -1,10 +1,11 @@
 export class Enemy {
-    constructor(area, intervalTime, enemyClass, explosionClass, lives) {
+    constructor(area, intervalTime, enemyClass, explosionClass, lives, points) {
         this.area = area;
         this.intervalTime = intervalTime;
         this.enemyClass = enemyClass;
         this.explosionClass = explosionClass;
         this.lives = lives;
+        this.points = points;
 
         this.element = document.createElement("div");
         this.interval = null;
@@ -31,12 +32,11 @@ export class Enemy {
     updatePosition() {
         this.interval = setInterval(() => {
             this.element.style.top = this.element.offsetTop + 1 + "px";
-            console.log("update position()");
+            // console.log("update position()");
         }, this.intervalTime);
     }
 
     getDamaged() {
-        console.log("damage");
         this.lives--;
 
         if (!this.lives) {
