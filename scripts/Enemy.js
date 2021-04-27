@@ -32,7 +32,6 @@ export class Enemy {
     updatePosition() {
         this.interval = setInterval(() => {
             this.element.style.top = this.element.offsetTop + 1 + "px";
-            // console.log("update position()");
         }, this.intervalTime);
     }
 
@@ -53,6 +52,7 @@ export class Enemy {
 
         setTimeout(() => {
             this.element.remove();
+            // this.audioExplosion.remove();
         }, 800);
     }
 }

@@ -1,12 +1,15 @@
-export class Bullet {
+import { Common } from "./Common.js";
+
+export class Bullet extends Common {
     constructor(x, y, area) {
+        super();
+
         this.x = x;
         this.y = y;
         this.area = area;
 
         this.element = document.createElement("div");
         this.audio = new Audio("./audio/LaserShot.wav");
-        // this.audio = new Audio("./audio/DefiniteShot.wav");
     }
 
     intervalShot = null;
@@ -15,6 +18,7 @@ export class Bullet {
 
     init() {
         this.audio.play();
+        // this.audioElements.shot.play();
 
         this.element.classList.add("battle-screen__bullet");
         this.area.append(this.element);

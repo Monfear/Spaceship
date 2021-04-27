@@ -7,6 +7,9 @@ export class Survivals {
 
         this.element = document.createElement("div");
         this.interval = null;
+
+        this.audioHealth = new Audio("./audio/HPadded.wav");
+        this.audioDead = new Audio("./audio/DramaticSceneSound.wav");
     }
 
     init() {
@@ -29,5 +32,28 @@ export class Survivals {
 
     setRandomPosition() {
         return Math.floor(Math.random() * (window.innerWidth - this.element.offsetWidth));
+    }
+
+    delete() {
+        clearInterval(this.interval);
+
+        this.element.animate(
+            [
+                {
+                    opacity: 1,
+                },
+                {
+                    opacity: 0,
+                },
+            ],
+            {
+                duration: 500,
+                iterations: 1,
+            }
+        );
+
+        setTimeout(() => {
+            this.element.remove();
+        }, 500);
     }
 }

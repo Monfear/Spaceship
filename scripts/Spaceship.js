@@ -20,6 +20,8 @@ export class Spaceship extends Common {
     lives = 3;
     shields = 1;
 
+    // audioShot = this.audioElements.shot;
+
     init() {
         this.connectDOM();
 
@@ -108,6 +110,7 @@ export class Spaceship extends Common {
     keyupActions = (e) => {
         if (e.key === " ") {
             this.executeShot();
+            // this.audioShot.play();
         }
 
         if (e.key === "Control") {
@@ -165,6 +168,6 @@ export class Spaceship extends Common {
             this.barrier.delete();
 
             this.isBarrier = false;
-        }, 3000);
+        }, 7000);
     }
 }

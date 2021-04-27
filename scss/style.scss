@@ -220,7 +220,7 @@ body {
         font-size: 3rem;
         position: fixed;
         left: 50%;
-        top: 5%;
+        top: 7%;
         transform: translateX(-50%);
     }
 
@@ -239,6 +239,15 @@ body {
 
         color: $text-color;
         font-size: 6rem;
+    }
+
+    &__timer {
+        position: fixed;
+        left: 50%;
+        top: 1rem;
+        transform: translateX(-50%);
+        color: $text-color;
+        font-size: 1.8rem;
     }
 
     &__info {
@@ -276,15 +285,15 @@ body {
     &__armor-bar {
         display: flex;
         justify-content: flex-end;
-        margin-top: 5%;
-        margin-right: 2%;
+        margin-top: 0.7rem;
+        margin-right: 0.5rem;
     }
 
     &__armor {
         width: 37px;
         height: 35px;
         background-image: url("./../img/Armor_Icon.png");
-        margin-left: 2%;
+        margin-left: 0.5rem;
     }
 
     &__lvl {
@@ -329,6 +338,7 @@ body {
         position: absolute;
         background-image: url("./../img/bullet_sprites.png");
         animation: bullet-move 400ms steps(8) infinite;
+        z-index: 0;
 
         left: 100px;
         top: 100px;
@@ -340,6 +350,7 @@ body {
         position: fixed;
         background-image: url("./../img/enemy1_sprites.png");
         animation: enemy1-move 200ms steps(8) infinite;
+        z-index: 1;
     }
 
     &__enemy2 {
@@ -348,6 +359,7 @@ body {
         position: fixed;
         background-image: url("./../img/enemy2_sprites.png");
         animation: enemy2-move 200ms steps(8) infinite;
+        z-index: 1;
 
         top: 300px;
     }
@@ -358,6 +370,7 @@ body {
         position: fixed;
         background-image: url("./../img/enemy3_sprites.png");
         animation: enemy3-move 200ms steps(5) infinite;
+        z-index: 1;
 
         top: 200px;
     }

@@ -16,6 +16,7 @@ export class Common {
         battleScreen: "[data-battle-screen]",
         backdrop: "[data-backdrop]",
         counter: "[data-counter]",
+        timer: "[data-timer]",
         hpBar: "[data-hp-bar]",
         armorBar: "[data-armor-bar]",
         spaceship: "[data-spaceship]",
@@ -35,6 +36,10 @@ export class Common {
         modalLeaderboard: "[data-leaderboard-modal]",
         btnMenuLeaderboard: "[data-btn-menu-leaderboard]",
         btnExit2Leaderboard: "[data-btn-exit2-leaderboard]",
+    };
+
+    audioElements = {
+        shot: new Audio("./audio/LaserShot.wav"),
     };
 
     getElement(selector) {

@@ -16,21 +16,26 @@ export class Game extends Common {
     level = 1;
 
     enemies = [];
-    enemiesSpeedInterval = 30;
+    enemiesSpeedInterval = 10;
+
+    timerInterval = null;
+    timerSpeedInterval = 100;
 
     checkPositionsInterval = null;
     checkPositionSpeedInterval = 200;
 
     insertEnemyInterval = null;
-    insertEnemySpeedInterval = 5000;
+    insertEnemySpeedInterval = 1000;
 
     survivalItems = [];
-    survivalItemsSpeed = 30;
+    survivalItemsSpeed = 20;
 
     insertSurvivalItemInterval = null;
-    insertSurvivalItemSpeedInterval = 5000;
+    insertSurvivalItemSpeedInterval = (Math.floor(Math.random() * 15) + 15) * 1000;
 
     enemyType = null;
+
+    // audioShot = this.audioElements.shot;
 
     init() {
         this.connectDOM();
@@ -43,6 +48,7 @@ export class Game extends Common {
         this.battleScreen = this.getElement(this.elementsOfDOM.battleScreen);
         this.backdrop = this.getElement(this.elementsOfDOM.backdrop);
         this.counter = this.getElement(this.elementsOfDOM.counter);
+        this.timer = this.getElement(this.elementsOfDOM.timer);
         this.info = this.getElement(this.elementsOfDOM.info);
         this.score = this.getElement(this.elementsOfDOM.score);
         this.life = this.getElement(this.elementsOfDOM.life);
@@ -56,6 +62,7 @@ export class Game extends Common {
     countToStart() {
         const audio = new Audio("./audio/battle.wav");
         audio.playbackRate = 0.9;
+        audio.volume = 0.5;
         audio.play();
 
         let number = 5;
@@ -137,20 +144,94 @@ export class Game extends Common {
         setTimeout(() => {
             this.lvlEl.hidden = true;
             this.playFirstLevel();
+
+            this.audioBattle = new Audio("./audio/battlebg/dark.mp3");
+            this.audioBattle.loop = true;
+            this.audioBattle.volume = 0.5;
+            this.audioBattle.play();
         }, 2000);
     }
 
     playFirstLevel() {
-        this.insertEnemyInterval = setInterval(() => this.drawEnemy(), this.insertEnemySpeedInterval);
+        this.startTimer();
+
+        // this.insertEnemyInterval = setInterval(() => this.drawEnemy(), this.insertEnemySpeedInterval);
 
         this.insertSurvivalItemInterval = setInterval(() => this.drawSurvivalItem(), this.insertSurvivalItemSpeedInterval);
 
         this.checkPositionsInterval = setInterval(() => this.checkPositions(), this.checkPositionSpeedInterval);
     }
 
+    startTimer() {
+        let minutes = 0;
+        let seconds = 0;
+
+        this.timerInterval = setInterval(() => {
+            seconds++;
+
+            if (seconds === 60) {
+                seconds = 0;
+                minutes++;
+
+                this.playNextLevel();
+            }
+
+            this.timer.innerText = `${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+        }, this.timerSpeedInterval);
+    }
+
+    playNextLevel() {
+        this.level++;
+
+        this.spaceship.shields++;
+        let shieldItem = document.createElement("div");
+        shieldItem.classList.add("battle-screen__armor");
+        this.spaceship.armorBar.append(shieldItem);
+
+        if (this.insertEnemySpeedInterval > 2000) {
+            // console.log(">2000");
+            // this.enemiesSpeedInterval -= 2;
+            // clearInterval(this.insertEnemyInterval);
+            // this.insertEnemySpeedInterval -= 400;
+            // this.insertEnemyInterval = setInterval(() => this.drawEnemy(), this.insertEnemySpeedInterval);
+            // clearInterval(this.insertSurvivalItem);
+            // this.survivalItemsSpeed -= 2;
+            // this.insertSurvivalItemInterval = setInterval(() => this.drawSurvivalItem(), this.insertSurvivalItemSpeedInterval);
+            // console.log(this.insertEnemySpeedInterval);
+        }
+
+        // if (this.enemiesSpeedInterval > 6 && this.survivalItemsSpeed > 6) {
+        //     this.survivalItemsSpeed -= 2;
+        //     this.enemiesSpeedInterval -= 2;
+        // }
+
+        this.lvlEl.innerText = `Level ${this.level}`;
+
+        this.lvlEl.hidden = false;
+        this.lvlEl.animate(
+            [
+                {
+                    opacity: 0,
+                    transform: "translate(-50%, -100%)",
+                },
+                {
+                    opacity: 1,
+                    transform: "translate(-50%, -50%)",
+                },
+            ],
+            {
+                duration: 1000,
+                iterations: 1,
+            }
+        );
+
+        setTimeout(() => {
+            this.lvlEl.hidden = true;
+        }, 2000);
+    }
+
     drawEnemy() {
         const randomNum = Math.floor(Math.random() * 11) + 1;
-        console.log(randomNum);
 
         if (randomNum === 11) {
             this.insertEnemy(this.battleScreen, this.enemiesSpeedInterval * 2, "battle-screen__enemy2", "battle-screen__explosion-big", 8, 50);
@@ -182,6 +263,10 @@ export class Game extends Common {
         } else if (randomNum === 3) {
             this.insertSurvivalItem(this.battleScreen, "battle-screen__bomb", "-", this.survivalItemsSpeed);
         }
+
+        clearInterval(this.insertSurvivalItemInterval);
+        this.insertSurvivalItemSpeedInterval = (Math.floor(Math.random() * 15) + 15) * 1000;
+        this.insertSurvivalItemInterval = setInterval(() => this.drawSurvivalItem(), this.insertSurvivalItemSpeedInterval);
     }
 
     insertSurvivalItem(...attr) {
@@ -191,7 +276,6 @@ export class Game extends Common {
     }
 
     checkPositions() {
-        // console.log("check position");
         this.enemies.forEach((enemy, enemyIdx, enemiesArr) => {
             const enemyCoordinates = {
                 top: enemy.element.offsetTop,
@@ -199,6 +283,8 @@ export class Game extends Common {
                 left: enemy.element.offsetLeft,
                 right: enemy.element.offsetLeft + enemy.element.offsetWidth,
             };
+            // console.log(this.spaceship.element.offsetTop);
+            // console.log(enemyCoordinates.top - enemy.element.offsetHeight / 2);
 
             // outside the screen
             if (enemyCoordinates.bottom - enemy.element.offsetHeight / 2 > window.innerHeight) {
@@ -235,6 +321,77 @@ export class Game extends Common {
                     // this.updateScore();
                 }
             });
+
+            const spaceshipCoordinates = {
+                top: this.spaceship.element.offsetTop,
+                bottom: this.spaceship.element.offsetTop + this.spaceship.element.offsetHeight,
+                left: this.spaceship.element.offsetLeft,
+                right: this.spaceship.element.offsetLeft + this.spaceship.element.offsetWidth,
+            };
+
+            if (enemyCoordinates.bottom - enemy.element.offsetHeight / 1.5 >= spaceshipCoordinates.top && enemyCoordinates.right >= spaceshipCoordinates.left && enemyCoordinates.left <= spaceshipCoordinates.right) {
+                if (this.spaceship.isBarrier) {
+                    return;
+                }
+
+                this.removeHealth();
+                this.removeHealth();
+                enemiesArr.splice(enemyIdx, 1);
+                enemy.makeExplosion();
+            }
+        });
+
+        this.survivalItems.forEach((item, idx, arr) => {
+            const itemCoordinates = {
+                top: item.element.offsetTop,
+                bottom: item.element.offsetTop + item.element.offsetHeight,
+                left: item.element.offsetLeft,
+                right: item.element.offsetLeft + item.element.offsetWidth,
+            };
+
+            const spaceshipCoordinates = {
+                top: this.spaceship.element.offsetTop,
+                bottom: this.spaceship.element.offsetTop + this.spaceship.element.offsetHeight,
+                left: this.spaceship.element.offsetLeft,
+                right: this.spaceship.element.offsetLeft + this.spaceship.element.offsetWidth,
+            };
+
+            if (itemCoordinates.bottom - item.element.offsetHeight / 1.2 >= spaceshipCoordinates.top && itemCoordinates.right >= spaceshipCoordinates.left && itemCoordinates.left <= spaceshipCoordinates.right) {
+                if (item.type === "+") {
+                    this.addHealth(item, idx, arr);
+                    // item.audioHealth.play();
+                    // arr.splice(idx, 1);
+                    // item.delete();
+                    // this.spaceship.lives++;
+                    // let hpItem = document.createElement("div");
+                    // hpItem.classList.add("battle-screen__hp");
+                    // this.spaceship.hpBar.append(hpItem);
+                } else if (item.type === "-") {
+                    if (this.spaceship.isBarrier) {
+                        item.delete();
+                        return;
+                    }
+
+                    item.audioDead.play();
+
+                    arr.splice(idx, 1);
+                    item.delete();
+
+                    while (this.spaceship.lives) {
+                        this.removeHealth();
+                    }
+                }
+            }
+
+            // if (itemCoordinates.top - item.element.offsetHeight / 2 >= window.innerHeight) {
+            //     arr.splice(idx, 1);
+            //     item.delete();
+            // }
+
+            if (itemCoordinates.bottom - item.element.offsetHeight / 4 >= window.innerHeight) {
+                arr.splice(idx, 1);
+                item.delete();
+            }
         });
 
         this.spaceship.bullets.forEach((bullet, bulletIdx, bulletArr) => {
@@ -272,7 +429,11 @@ export class Game extends Common {
         // }
 
         this.spaceship.lives--;
-        this.spaceship.hpBar.children[0].remove();
+
+        if (this.spaceship.hpBar.children.length) {
+            this.spaceship.hpBar.children[0].remove();
+        }
+
         this.backdrop.hidden = false;
 
         setTimeout(() => (this.backdrop.hidden = true), 200);
@@ -282,11 +443,24 @@ export class Game extends Common {
         }
     }
 
-    addHealth() {
+    addHealth(item, idx, arr) {
         console.log("add health()");
+
+        item.audioHealth.play();
+
+        arr.splice(idx, 1);
+        item.delete();
+
+        this.spaceship.lives++;
+
+        let hpItem = document.createElement("div");
+        hpItem.classList.add("battle-screen__hp");
+        this.spaceship.hpBar.append(hpItem);
     }
 
     endGame() {
+        this.audioBattle.pause();
+
         window.removeEventListener("keydown", this.spaceship.keydownActionsRefer);
         window.removeEventListener("keyup", this.spaceship.keyupActionsRefer);
 
@@ -296,6 +470,7 @@ export class Game extends Common {
         clearInterval(this.checkPositionsInterval);
         clearInterval(this.insertEnemyInterval);
         clearInterval(this.insertSurvivalItemInterval);
+        clearInterval(this.timerInterval);
 
         this.gameOverEl.classList.remove("hide");
 
@@ -308,6 +483,12 @@ export class Game extends Common {
         });
 
         this.enemies.length = 0;
+
+        this.survivalItems.forEach((item) => {
+            item.delete();
+        });
+
+        this.survivalItems.length = 0;
 
         const resultScreen = new ResultScreen();
         resultScreen.element.classList.remove("hide");

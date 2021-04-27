@@ -273,7 +273,7 @@ body {
   font-size: 3rem;
   position: fixed;
   left: 50%;
-  top: 5%;
+  top: 7%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
 }
@@ -293,6 +293,16 @@ body {
           transform: translate(-50%, -50%);
   color: #e4f5f4;
   font-size: 6rem;
+}
+
+.battle-screen__timer {
+  position: fixed;
+  left: 50%;
+  top: 1rem;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  color: #e4f5f4;
+  font-size: 1.8rem;
 }
 
 .battle-screen__info {
@@ -345,15 +355,15 @@ body {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  margin-top: 5%;
-  margin-right: 2%;
+  margin-top: 0.7rem;
+  margin-right: 0.5rem;
 }
 
 .battle-screen__armor {
   width: 37px;
   height: 35px;
   background-image: url("./../img/Armor_Icon.png");
-  margin-left: 2%;
+  margin-left: 0.5rem;
 }
 
 .battle-screen__lvl {
@@ -401,6 +411,7 @@ body {
   background-image: url("./../img/bullet_sprites.png");
   -webkit-animation: bullet-move 400ms steps(8) infinite;
           animation: bullet-move 400ms steps(8) infinite;
+  z-index: 0;
   left: 100px;
   top: 100px;
 }
@@ -412,6 +423,7 @@ body {
   background-image: url("./../img/enemy1_sprites.png");
   -webkit-animation: enemy1-move 200ms steps(8) infinite;
           animation: enemy1-move 200ms steps(8) infinite;
+  z-index: 1;
 }
 
 .battle-screen__enemy2 {
@@ -421,6 +433,7 @@ body {
   background-image: url("./../img/enemy2_sprites.png");
   -webkit-animation: enemy2-move 200ms steps(8) infinite;
           animation: enemy2-move 200ms steps(8) infinite;
+  z-index: 1;
   top: 300px;
 }
 
@@ -431,6 +444,7 @@ body {
   background-image: url("./../img/enemy3_sprites.png");
   -webkit-animation: enemy3-move 200ms steps(5) infinite;
           animation: enemy3-move 200ms steps(5) infinite;
+  z-index: 1;
   top: 200px;
 }
 
