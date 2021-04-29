@@ -1,0 +1,24 @@
+{
+    "players": [
+        {
+            "name": "Patryk",
+            "points": 100
+        },
+        {
+            "name": "Janusz",
+            "points": 100
+        },
+        {
+            "name": "Zenek",
+            "points": 100
+        },
+        {
+            "name": "Grażyna",
+            "points": 100
+        },
+        {
+            "name": "Esmeralda",
+            "points": 100
+        }
+    ]
+}

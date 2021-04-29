@@ -16,16 +16,16 @@ export class Game extends Common {
     level = 1;
 
     enemies = [];
-    enemiesSpeedInterval = 10;
+    enemiesSpeedInterval = 20;
 
     timerInterval = null;
-    timerSpeedInterval = 100;
+    timerSpeedInterval = 400;
 
     checkPositionsInterval = null;
     checkPositionSpeedInterval = 200;
 
     insertEnemyInterval = null;
-    insertEnemySpeedInterval = 1000;
+    insertEnemySpeedInterval = 3000;
 
     survivalItems = [];
     survivalItemsSpeed = 20;
@@ -115,6 +115,10 @@ export class Game extends Common {
 
     setFirstLevel() {
         this.spaceship.element.style.transform = "translateY(55px)";
+
+        window.addEventListener("keydown", this.spaceship.keydownActionsRefer);
+        window.addEventListener("keyup", this.spaceship.keyupActionsRefer);
+
         // this.spaceship.actionListeners();
 
         // this.spaceship.updateMoves();
@@ -147,7 +151,7 @@ export class Game extends Common {
 
             this.audioBattle = new Audio("./audio/battlebg/dark.mp3");
             this.audioBattle.loop = true;
-            this.audioBattle.volume = 0.5;
+            this.audioBattle.volume = 0.8;
             this.audioBattle.play();
         }, 2000);
     }
@@ -155,7 +159,7 @@ export class Game extends Common {
     playFirstLevel() {
         this.startTimer();
 
-        // this.insertEnemyInterval = setInterval(() => this.drawEnemy(), this.insertEnemySpeedInterval);
+        this.insertEnemyInterval = setInterval(() => this.drawEnemy(), this.insertEnemySpeedInterval);
 
         this.insertSurvivalItemInterval = setInterval(() => this.drawSurvivalItem(), this.insertSurvivalItemSpeedInterval);
 
@@ -188,22 +192,16 @@ export class Game extends Common {
         shieldItem.classList.add("battle-screen__armor");
         this.spaceship.armorBar.append(shieldItem);
 
-        if (this.insertEnemySpeedInterval > 2000) {
-            // console.log(">2000");
-            // this.enemiesSpeedInterval -= 2;
-            // clearInterval(this.insertEnemyInterval);
-            // this.insertEnemySpeedInterval -= 400;
-            // this.insertEnemyInterval = setInterval(() => this.drawEnemy(), this.insertEnemySpeedInterval);
-            // clearInterval(this.insertSurvivalItem);
-            // this.survivalItemsSpeed -= 2;
-            // this.insertSurvivalItemInterval = setInterval(() => this.drawSurvivalItem(), this.insertSurvivalItemSpeedInterval);
-            // console.log(this.insertEnemySpeedInterval);
+        if (this.insertEnemySpeedInterval > 1000) {
+            clearInterval(this.insertEnemyInterval);
+            this.insertEnemySpeedInterval -= 200;
+            this.insertEnemyInterval = setInterval(() => this.drawEnemy(), this.insertEnemySpeedInterval);
         }
 
-        // if (this.enemiesSpeedInterval > 6 && this.survivalItemsSpeed > 6) {
-        //     this.survivalItemsSpeed -= 2;
-        //     this.enemiesSpeedInterval -= 2;
-        // }
+        if (this.enemiesSpeedInterval > 4) {
+            this.enemiesSpeedInterval -= 2;
+            this.survivalItemsSpeed -= 1;
+        }
 
         this.lvlEl.innerText = `Level ${this.level}`;
 
@@ -234,15 +232,15 @@ export class Game extends Common {
         const randomNum = Math.floor(Math.random() * 11) + 1;
 
         if (randomNum === 11) {
-            this.insertEnemy(this.battleScreen, this.enemiesSpeedInterval * 2, "battle-screen__enemy2", "battle-screen__explosion-big", 8, 50);
+            this.insertEnemy(this.battleScreen, this.enemiesSpeedInterval, "battle-screen__enemy2", "battle-screen__explosion-big", 8, 50);
             this.enemyType = 11;
         }
 
         if (randomNum % 2 === 0 && randomNum !== 11) {
-            this.insertEnemy(this.battleScreen, this.enemiesSpeedInterval * 1.4, "battle-screen__enemy1", "battle-screen__explosion-small", 3, 20);
+            this.insertEnemy(this.battleScreen, this.enemiesSpeedInterval * 0.7, "battle-screen__enemy1", "battle-screen__explosion-small", 3, 20);
             this.enemyType = 2;
         } else if (randomNum % 2 !== 0 && randomNum !== 11) {
-            this.insertEnemy(this.battleScreen, this.enemiesSpeedInterval, "battle-screen__enemy3", "battle-screen__explosion-small", 1, 10);
+            this.insertEnemy(this.battleScreen, this.enemiesSpeedInterval * 0.5, "battle-screen__enemy3", "battle-screen__explosion-small", 1, 10);
             this.enemyType = 3;
         }
     }

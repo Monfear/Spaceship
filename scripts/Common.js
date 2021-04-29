@@ -34,6 +34,7 @@ export class Common {
 
         // modal leaderboard
         modalLeaderboard: "[data-leaderboard-modal]",
+        rank: "[data-rank]",
         btnMenuLeaderboard: "[data-btn-menu-leaderboard]",
         btnExit2Leaderboard: "[data-btn-exit2-leaderboard]",
     };

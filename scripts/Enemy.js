@@ -11,6 +11,7 @@ export class Enemy {
         this.interval = null;
 
         this.audioExplosion = new Audio("./audio/Explosion.wav");
+        this.audioHit = new Audio("./audio/LowBassHit.wav");
     }
 
     init() {
@@ -36,6 +37,9 @@ export class Enemy {
     }
 
     getDamaged() {
+        this.audioHit.play();
+        this.audioHit.volume = 0.3;
+
         this.lives--;
 
         if (!this.lives) {

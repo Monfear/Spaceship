@@ -44,8 +44,8 @@ export class Spaceship extends Common {
         this.keydownActionsRefer = this.keydownActions;
         this.keyupActionsRefer = this.keyupActions;
 
-        window.addEventListener("keydown", this.keydownActionsRefer);
-        window.addEventListener("keyup", this.keyupActionsRefer);
+        // window.addEventListener("keydown", this.keydownActionsRefer);
+        // window.addEventListener("keyup", this.keyupActionsRefer);
     }
 
     setStartPosition() {
@@ -110,7 +110,6 @@ export class Spaceship extends Common {
     keyupActions = (e) => {
         if (e.key === " ") {
             this.executeShot();
-            // this.audioShot.play();
         }
 
         if (e.key === "Control") {
