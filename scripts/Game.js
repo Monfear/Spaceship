@@ -492,6 +492,12 @@ export class Game extends Common {
         resultScreen.element.classList.remove("hide");
         resultScreen.finalScore.innerText = this.points;
 
+        resultScreen.form.addEventListener(
+            "submit",
+            resultScreen.addPlayer(this.points)
+            // e.preventDefault();
+        );
+
         // const leaderboardScreen = new Leaderboard();
         // leaderboardScreen.element.classList.remove("hide");
     }

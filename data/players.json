@@ -1,24 +1,29 @@
 {
     "players": [
         {
+            "id": 1,
             "name": "Patryk",
-            "points": 100
+            "points": 200
         },
         {
+            "id": 2,
             "name": "Janusz",
-            "points": 100
+            "points": 300
         },
         {
+            "id": 3,
             "name": "Zenek",
             "points": 100
         },
         {
+            "id": 4,
             "name": "Grażyna",
             "points": 100
         },
         {
+            "id": 5,
             "name": "Esmeralda",
-            "points": 100
+            "points": 400
         }
     ]
 }

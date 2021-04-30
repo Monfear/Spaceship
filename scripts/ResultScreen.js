@@ -17,6 +17,8 @@ export class ResultScreen extends Common {
         this.element = this.getElement(this.elementsOfDOM.modalResult);
         this.finalScore = this.getElement(this.elementsOfDOM.finalScore);
         this.btnLeaderBoard = this.getElement(this.elementsOfDOM.btnLeaderboard);
+        this.inputName = this.getElement(this.elementsOfDOM.inputName);
+        this.form = this.getElement(this.elementsOfDOM.formLeaderBoard);
     }
 
     setupListeners() {
@@ -29,4 +31,23 @@ export class ResultScreen extends Common {
         const leaderboardScreen = new Leaderboard();
         leaderboardScreen.element.classList.remove("hide");
     };
+
+    addPlayer(points) {
+        // e.preventDefault();
+
+        const player = {
+            name: this.inputName.value,
+            points,
+        };
+
+        const url = "http://localhost:8000/players";
+
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(player),
+            headers: { "Content-Type": "application/json" },
+        });
+
+        this.changeToLeaderboard();
+    }
 }
