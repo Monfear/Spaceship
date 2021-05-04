@@ -22,7 +22,7 @@ export class ResultScreen extends Common {
     }
 
     setupListeners() {
-        this.btnLeaderBoard.addEventListener("click", this.changeToLeaderboard);
+        // this.btnLeaderBoard.addEventListener("click", this.changeToLeaderboard);
     }
 
     changeToLeaderboard = () => {
@@ -32,8 +32,10 @@ export class ResultScreen extends Common {
         leaderboardScreen.element.classList.remove("hide");
     };
 
-    addPlayer(points) {
+    addPlayer(e, points) {
         // e.preventDefault();
+        // console.log(points);
+        // console.log(e);
 
         const player = {
             name: this.inputName.value,
@@ -48,6 +50,6 @@ export class ResultScreen extends Common {
             headers: { "Content-Type": "application/json" },
         });
 
-        this.changeToLeaderboard();
+        // this.changeToLeaderboard();
     }
 }
