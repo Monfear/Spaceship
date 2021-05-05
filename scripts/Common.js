@@ -31,12 +31,12 @@ export class Common {
         modalResult: "[data-result-modal]",
         finalScore: "[data-final-score]",
         btnLeaderboard: "[data-btn-leaderboard]",
+        inputName: "[data-input-name]",
+        formLeaderBoard: "[data-form-leaderboard]",
 
         // modal leaderboard
         modalLeaderboard: "[data-leaderboard-modal]",
         rank: "[data-rank]",
-        formLeaderBoard: "[data-form-leaderboard]",
-        inputName: "[data-input-name]",
         btnMenuLeaderboard: "[data-btn-menu-leaderboard]",
         btnExit2Leaderboard: "[data-btn-exit2-leaderboard]",
     };

@@ -22,7 +22,7 @@ export class ResultScreen extends Common {
     }
 
     setupListeners() {
-        // this.btnLeaderBoard.addEventListener("click", this.changeToLeaderboard);
+        this.btnLeaderBoard.addEventListener("click", this.addPlayer);
     }
 
     changeToLeaderboard = () => {
@@ -32,10 +32,8 @@ export class ResultScreen extends Common {
         leaderboardScreen.element.classList.remove("hide");
     };
 
-    addPlayer(e, points) {
-        // e.preventDefault();
-        // console.log(points);
-        // console.log(e);
+    addPlayer = (points) => {
+        console.log(points);
 
         const player = {
             name: this.inputName.value,
@@ -49,7 +47,25 @@ export class ResultScreen extends Common {
             body: JSON.stringify(player),
             headers: { "Content-Type": "application/json" },
         });
+    };
 
-        // this.changeToLeaderboard();
-    }
+    // addPlayer = async (points) => {
+    //     console.log(points);
+    //     const player = {
+    //         name: this.inputName.value,
+    //         points,
+    //     };
+
+    //     const url = "http://localhost:8000/players";
+
+    //     try {
+    //         await fetch(url, {
+    //             method: "POST",
+    //             body: JSON.stringify(player),
+    //             headers: { "Content-Type": "application/json" },
+    //         });
+    //     } catch (err) {
+    //         console.log(errr);
+    //     }
+    // };
 }

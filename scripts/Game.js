@@ -488,20 +488,66 @@ export class Game extends Common {
 
         this.survivalItems.length = 0;
 
-        const resultScreen = new ResultScreen();
-        resultScreen.element.classList.remove("hide");
-        resultScreen.finalScore.innerText = this.points;
+        this.checkResult();
 
-        resultScreen.form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const leaderboard = new Leaderboard();
-            resultScreen.changeToLeaderboard();
-            resultScreen.addPlayer(e, this.points);
+        // const resultScreen = new ResultScreen();
+        // resultScreen.element.classList.remove("hide");
+        // resultScreen.finalScore.innerText = this.points;
 
-            leaderboard.renderInfo();
-        });
+        // resultScreen.form.addEventListener("submit", (e) => {
+        //     e.preventDefault();
+        //     const leaderboard = new Leaderboard();
+        //     resultScreen.addPlayer(this.points);
+        //     leaderboard.renderInfo();
+        //     resultScreen.changeToLeaderboard();
+        // });
+
+        // resultScreen.btnLeaderBoard.addEventListener("click", () => {
+        //     const leaderboard = new Leaderboard();
+        //     resultScreen.addPlayer(this.points);
+        //     leaderboard.renderInfo();
+        //     resultScreen.changeToLeaderboard();
+        // });
+
+        // resultScreen.inputName.addEventListener("keyup", (e) => {
+        //     if (e.key === "Enter") {
+        //         const leaderboard = new Leaderboard();
+        //         resultScreen.addPlayer(this.points);
+        //         leaderboard.renderInfo();
+        //         resultScreen.changeToLeaderboard();
+        //     }
+        // });
 
         // const leaderboardScreen = new Leaderboard();
         // leaderboardScreen.element.classList.remove("hide");
     }
+
+    checkResult = async () => {
+        const url = "http://localhost:8000/players";
+        const response = await fetch(url);
+        const data = await response.json();
+        data.sort((player1, player2) => {
+            return parseFloat(player2.points) - parseFloat(player1.points);
+        });
+
+        // console.log(data.slice(4)[0].points);
+
+        if (this.points > data.slice(4)[0].points) {
+            const resultScreen = new ResultScreen();
+            resultScreen.element.classList.remove("hide");
+            resultScreen.finalScore.innerText = this.points;
+
+            resultScreen.form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const leaderboard = new Leaderboard();
+                resultScreen.addPlayer(this.points);
+                leaderboard.renderInfo();
+                resultScreen.changeToLeaderboard();
+            });
+        } else {
+            const leaderboard = new Leaderboard();
+            leaderboard.renderInfo();
+            leaderboard.element.classList.remove("hide");
+        }
+    };
 }
