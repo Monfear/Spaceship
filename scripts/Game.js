@@ -169,10 +169,10 @@ export class Game extends Common {
                 minutes++;
 
                 // this.playNextLevel();
-                this.addShield();
+                // this.addShield();
             }
 
-            if (seconds === 30) {
+            if (seconds === 30 || seconds === 60) {
                 this.playNextLevel();
             }
 
@@ -191,6 +191,7 @@ export class Game extends Common {
 
     playNextLevel() {
         this.level++;
+        this.addShield();
 
         // this.spaceship.shields++;
         // let shieldItem = document.createElement("div");
