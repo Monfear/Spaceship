@@ -9,7 +9,6 @@ export class Leaderboard extends Common {
 
     init() {
         this.connectDOM();
-        // this.renderInfo();
         this.setupListeners();
     }
 

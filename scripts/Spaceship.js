@@ -20,8 +20,6 @@ export class Spaceship extends Common {
     lives = 3;
     shields = 1;
 
-    // audioShot = this.audioElements.shot;
-
     init() {
         this.connectDOM();
 
@@ -38,14 +36,8 @@ export class Spaceship extends Common {
     }
 
     setupListeners() {
-        // window.addEventListener("keydown", (e) => this.keydownActions(e));
-        // window.addEventListener("keyup", (e) => this.keyupActions(e));
-
         this.keydownActionsRefer = this.keydownActions;
         this.keyupActionsRefer = this.keyupActions;
-
-        // window.addEventListener("keydown", this.keydownActionsRefer);
-        // window.addEventListener("keyup", this.keyupActionsRefer);
     }
 
     setStartPosition() {
@@ -72,32 +64,6 @@ export class Spaceship extends Common {
     getCurrentPosition() {
         return this.element.offsetLeft + this.element.offsetWidth / 2;
     }
-
-    // actionListeners = () => {
-    //     window.addEventListener("keydown", (e) => {
-    //         if (e.key === "ArrowLeft") {
-    //             this.isArrowLeft = true;
-    //         } else if (e.key === "ArrowRight") {
-    //             this.isArrowRight = true;
-    //         }
-    //     });
-
-    //     window.addEventListener("keyup", (e) => {
-    //         if (e.key === " ") {
-    //             this.executeShot();
-    //         }
-
-    //         if (e.key === "Control") {
-    //             this.executeBarrier();
-    //         }
-
-    //         if (e.key === "ArrowLeft") {
-    //             this.isArrowLeft = false;
-    //         } else if (e.key === "ArrowRight") {
-    //             this.isArrowRight = false;
-    //         }
-    //     });
-    // };
 
     keydownActions = (e) => {
         if (e.key === "ArrowLeft") {
@@ -167,6 +133,6 @@ export class Spaceship extends Common {
             this.barrier.delete();
 
             this.isBarrier = false;
-        }, 7000);
+        }, 6000);
     }
 }

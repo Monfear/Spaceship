@@ -33,8 +33,6 @@ export class ResultScreen extends Common {
     };
 
     addPlayer = (points) => {
-        console.log(points);
-
         const player = {
             name: this.inputName.value,
             points,
@@ -48,24 +46,4 @@ export class ResultScreen extends Common {
             headers: { "Content-Type": "application/json" },
         });
     };
-
-    // addPlayer = async (points) => {
-    //     console.log(points);
-    //     const player = {
-    //         name: this.inputName.value,
-    //         points,
-    //     };
-
-    //     const url = "http://localhost:8000/players";
-
-    //     try {
-    //         await fetch(url, {
-    //             method: "POST",
-    //             body: JSON.stringify(player),
-    //             headers: { "Content-Type": "application/json" },
-    //         });
-    //     } catch (err) {
-    //         console.log(errr);
-    //     }
-    // };
 }

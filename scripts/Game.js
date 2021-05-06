@@ -119,11 +119,6 @@ export class Game extends Common {
         window.addEventListener("keydown", this.spaceship.keydownActionsRefer);
         window.addEventListener("keyup", this.spaceship.keyupActionsRefer);
 
-        // this.spaceship.actionListeners();
-
-        // this.spaceship.updateMoves();
-        // this.spaceship.updatePositionLoop();
-
         this.info.style.opacity = 1;
         this.lvlEl.innerText = `Level ${this.level}`;
 
@@ -281,8 +276,6 @@ export class Game extends Common {
                 left: enemy.element.offsetLeft,
                 right: enemy.element.offsetLeft + enemy.element.offsetWidth,
             };
-            // console.log(this.spaceship.element.offsetTop);
-            // console.log(enemyCoordinates.top - enemy.element.offsetHeight / 2);
 
             // outside the screen
             if (enemyCoordinates.bottom - enemy.element.offsetHeight / 2 > window.innerHeight) {
@@ -299,8 +292,6 @@ export class Game extends Common {
                     right: bullet.element.offsetLeft + bullet.element.offsetWidth,
                 };
 
-                // if (bulletCoordinates.top <= enemyCoordinates.bottom - enemy.element.offsetHeight / 5 && bulletCoordinates.bottom >= enemyCoordinates.top && bulletCoordinates.right >= enemyCoordinates.left + enemy.element.offsetWidth / 4 && bulletCoordinates.left <= enemyCoordinates.right - enemy.element.offsetWidth / 4) {
-
                 // checking cross points
                 if (bulletCoordinates.top <= enemyCoordinates.bottom - enemy.element.offsetHeight / 5 && bulletCoordinates.right >= enemyCoordinates.left + enemy.element.offsetWidth / 4 && bulletCoordinates.left <= enemyCoordinates.right - enemy.element.offsetWidth / 4) {
                     enemy.getDamaged();
@@ -310,13 +301,10 @@ export class Game extends Common {
                         this.scoreNumberEl.innerText = this.points;
 
                         enemiesArr.splice(enemyIdx, 1);
-
-                        // this.updatePoints();
                     }
 
                     bulletArr.splice(bulletIdx, 1);
                     bullet.element.remove();
-                    // this.updateScore();
                 }
             });
 
@@ -329,6 +317,8 @@ export class Game extends Common {
 
             if (enemyCoordinates.bottom - enemy.element.offsetHeight / 1.5 >= spaceshipCoordinates.top && enemyCoordinates.right >= spaceshipCoordinates.left && enemyCoordinates.left <= spaceshipCoordinates.right) {
                 if (this.spaceship.isBarrier) {
+                    enemiesArr.splice(enemyIdx, 1);
+                    enemy.makeExplosion();
                     return;
                 }
 
@@ -357,13 +347,6 @@ export class Game extends Common {
             if (itemCoordinates.bottom - item.element.offsetHeight / 1.2 >= spaceshipCoordinates.top && itemCoordinates.right >= spaceshipCoordinates.left && itemCoordinates.left <= spaceshipCoordinates.right) {
                 if (item.type === "+") {
                     this.addHealth(item, idx, arr);
-                    // item.audioHealth.play();
-                    // arr.splice(idx, 1);
-                    // item.delete();
-                    // this.spaceship.lives++;
-                    // let hpItem = document.createElement("div");
-                    // hpItem.classList.add("battle-screen__hp");
-                    // this.spaceship.hpBar.append(hpItem);
                 } else if (item.type === "-") {
                     if (this.spaceship.isBarrier) {
                         item.delete();
@@ -381,11 +364,6 @@ export class Game extends Common {
                 }
             }
 
-            // if (itemCoordinates.top - item.element.offsetHeight / 2 >= window.innerHeight) {
-            //     arr.splice(idx, 1);
-            //     item.delete();
-            // }
-
             if (itemCoordinates.bottom - item.element.offsetHeight / 4 >= window.innerHeight) {
                 arr.splice(idx, 1);
                 item.delete();
@@ -400,32 +378,7 @@ export class Game extends Common {
         });
     }
 
-    // updatePoints() {
-    //     switch (this.enemyType) {
-    //         case 11:
-    //             this.points += 50;
-    //             break;
-    //         case 2:
-    //             this.points += 20;
-    //             break;
-    //         case 3:
-    //             this.points += 10;
-    //             break;
-    //         default:
-    //             break;
-    //     }
-
-    //     this.scoreNumberEl.innerText = this.points;
-
-    //     // this.updateResist();
-    //     // this.endGame();
-    // }
-
     removeHealth() {
-        // if (this.spaceship.isBarrier) {
-        //     return;
-        // }
-
         this.spaceship.lives--;
 
         if (this.spaceship.hpBar.children.length) {
@@ -442,8 +395,6 @@ export class Game extends Common {
     }
 
     addHealth(item, idx, arr) {
-        console.log("add health()");
-
         item.audioHealth.play();
 
         arr.splice(idx, 1);
@@ -489,37 +440,6 @@ export class Game extends Common {
         this.survivalItems.length = 0;
 
         this.checkResult();
-
-        // const resultScreen = new ResultScreen();
-        // resultScreen.element.classList.remove("hide");
-        // resultScreen.finalScore.innerText = this.points;
-
-        // resultScreen.form.addEventListener("submit", (e) => {
-        //     e.preventDefault();
-        //     const leaderboard = new Leaderboard();
-        //     resultScreen.addPlayer(this.points);
-        //     leaderboard.renderInfo();
-        //     resultScreen.changeToLeaderboard();
-        // });
-
-        // resultScreen.btnLeaderBoard.addEventListener("click", () => {
-        //     const leaderboard = new Leaderboard();
-        //     resultScreen.addPlayer(this.points);
-        //     leaderboard.renderInfo();
-        //     resultScreen.changeToLeaderboard();
-        // });
-
-        // resultScreen.inputName.addEventListener("keyup", (e) => {
-        //     if (e.key === "Enter") {
-        //         const leaderboard = new Leaderboard();
-        //         resultScreen.addPlayer(this.points);
-        //         leaderboard.renderInfo();
-        //         resultScreen.changeToLeaderboard();
-        //     }
-        // });
-
-        // const leaderboardScreen = new Leaderboard();
-        // leaderboardScreen.element.classList.remove("hide");
     }
 
     checkResult = async () => {
@@ -529,8 +449,6 @@ export class Game extends Common {
         data.sort((player1, player2) => {
             return parseFloat(player2.points) - parseFloat(player1.points);
         });
-
-        // console.log(data.slice(4)[0].points);
 
         if (this.points > data.slice(4)[0].points) {
             const resultScreen = new ResultScreen();

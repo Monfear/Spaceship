@@ -1,41 +1,29 @@
 {
-  "players": [
-    {
-      "id": 1,
-      "name": "Patryk",
-      "points": 200
-    },
-    {
-      "id": 2,
-      "name": "Janusz",
-      "points": 300
-    },
-    {
-      "id": 3,
-      "name": "Zenek",
-      "points": 100
-    },
-    {
-      "id": 4,
-      "name": "Grażyna",
-      "points": 100
-    },
-    {
-      "id": 5,
-      "name": "Esmeralda",
-      "points": 400
-    },
-    {
-      "name": "pl",
-      "points": {
-        "isTrusted": true
-      },
-      "id": 6
-    },
-    {
-      "name": "pl",
-      "points": 0,
-      "id": 7
-    }
-  ]
+    "players": [
+        {
+            "id": 1,
+            "name": "Patryk",
+            "points": 200
+        },
+        {
+            "id": 2,
+            "name": "Janusz",
+            "points": 300
+        },
+        {
+            "id": 3,
+            "name": "Zenek",
+            "points": 100
+        },
+        {
+            "id": 4,
+            "name": "Grażyna",
+            "points": 100
+        },
+        {
+            "id": 5,
+            "name": "Esmeralda",
+            "points": 400
+        }
+    ]
 }

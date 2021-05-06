@@ -56,7 +56,6 @@ export class Enemy {
 
         setTimeout(() => {
             this.element.remove();
-            // this.audioExplosion.remove();
         }, 800);
     }
 }

@@ -18,7 +18,6 @@ export class Bullet extends Common {
 
     init() {
         this.audio.play();
-        // this.audioElements.shot.play();
 
         this.element.classList.add("battle-screen__bullet");
         this.area.append(this.element);

@@ -28,17 +28,9 @@ class MainMenu extends Common {
 
         this.btnStart = this.getElement(this.elementsOfDOM.btnStart);
         this.btnExit = this.getElement(this.elementsOfDOM.btnExit);
-
-        // this.allButtons = document.querySelectorAll("button");
     }
 
     setupListeners() {
-        // this.pauseStartedSoundRefer = this.pauseStartedSound.bind(this);
-        // this.playStartedSoundRefer = this.playStartedSound.bind(this);
-        // this.btnSound.addEventListener("click", this.playStartedSoundRefer);
-        // this.toggleSoundRef = this.toggleSound.bind(this);
-        // this.btnSound.addEventListener("click", this.toggleSoundRef);
-
         this.btnSound.addEventListener("click", this.toggleSound);
 
         this.btnExit.addEventListener("click", () => this.exitGame());
@@ -52,35 +44,13 @@ class MainMenu extends Common {
             this.divSoundLine.classList.add("hide");
 
             this.audioStarted.play();
-
-            // this.btnSound.removeEventListener("click", this.playStartedSoundRefer);
-            // this.btnSound.addEventListener("click", this.pauseStartedSoundRefer);
         } else {
             this.isMusic = false;
 
             this.divSoundLine.classList.remove("hide");
             this.audioStarted.pause();
-
-            // this.btnSound.removeEventListener("click", this.pauseStartedSoundRefer);
-            // this.btnSound.addEventListener("click", this.playStartedSoundRefer);
         }
     };
-
-    // playStartedSound() {
-    //     this.divSoundLine.classList.add("hide");
-    //     this.audioStarted.play();
-
-    //     this.btnSound.removeEventListener("click", this.playStartedSoundRefer);
-    //     this.btnSound.addEventListener("click", this.pauseStartedSoundRefer);
-    // }
-
-    // pauseStartedSound() {
-    //     this.divSoundLine.classList.remove("hide");
-    //     this.audioStarted.pause();
-
-    //     this.btnSound.removeEventListener("click", this.pauseStartedSoundRefer);
-    //     this.btnSound.addEventListener("click", this.playStartedSoundRefer);
-    // }
 
     startGame() {
         this.clickAudio.play();
