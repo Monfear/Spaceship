@@ -19,7 +19,7 @@ export class Game extends Common {
     enemiesSpeedInterval = 20;
 
     timerInterval = null;
-    timerSpeedInterval = 400;
+    timerSpeedInterval = 1000;
 
     checkPositionsInterval = null;
     checkPositionSpeedInterval = 200;
