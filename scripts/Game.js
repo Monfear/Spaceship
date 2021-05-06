@@ -193,11 +193,6 @@ export class Game extends Common {
         this.level++;
         this.addShield();
 
-        // this.spaceship.shields++;
-        // let shieldItem = document.createElement("div");
-        // shieldItem.classList.add("battle-screen__armor");
-        // this.spaceship.armorBar.append(shieldItem);
-
         if (this.insertEnemySpeedInterval > 1000) {
             clearInterval(this.insertEnemyInterval);
             this.insertEnemySpeedInterval -= 200;

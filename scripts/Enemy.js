@@ -1,5 +1,9 @@
-export class Enemy {
+import { Common } from "./Common.js";
+
+export class Enemy extends Common {
     constructor(area, intervalTime, enemyClass, explosionClass, lives, points) {
+        super();
+
         this.area = area;
         this.intervalTime = intervalTime;
         this.enemyClass = enemyClass;
@@ -10,8 +14,8 @@ export class Enemy {
         this.element = document.createElement("div");
         this.interval = null;
 
-        this.audioExplosion = new Audio("./audio/Explosion.wav");
-        this.audioHit = new Audio("./audio/LowBassHit.wav");
+        // this.audioExplosion = new Audio("./audio/Explosion.wav");
+        // this.audioHit = new Audio("./audio/LowBassHit.wav");
     }
 
     init() {
@@ -37,8 +41,10 @@ export class Enemy {
     }
 
     getDamaged() {
-        this.audioHit.play();
-        this.audioHit.volume = 0.3;
+        // this.audioHit.play();
+        // this.audioHit.volume = 0.3;
+        this.audioElements.hit.volume = 0.3;
+        this.audioElements.hit.play();
 
         this.lives--;
 
@@ -48,7 +54,8 @@ export class Enemy {
     }
 
     makeExplosion() {
-        this.audioExplosion.play();
+        // this.audioExplosion.play();
+        this.audioElements.explosion.play();
         clearInterval(this.interval);
 
         this.element.classList.remove(this.enemyClass);

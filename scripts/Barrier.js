@@ -21,13 +21,13 @@ export class Barrier {
         let opacity = 1;
 
         const interval = setInterval(() => {
+            if (opacity < 0.1) {
+                clearInterval(interval);
+                this.element.remove();
+            }
+
             opacity -= 0.1;
             this.element.style.opacity = opacity;
         }, 10);
-
-        if (opacity <= 0) {
-            clearInterval(interval);
-            this.element.remove();
-        }
     }
 }

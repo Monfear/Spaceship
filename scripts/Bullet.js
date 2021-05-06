@@ -9,7 +9,7 @@ export class Bullet extends Common {
         this.area = area;
 
         this.element = document.createElement("div");
-        this.audio = new Audio("./audio/LaserShot.wav");
+        // this.audio = new Audio("./audio/LaserShot.wav");
     }
 
     intervalShot = null;
@@ -17,7 +17,8 @@ export class Bullet extends Common {
     bulletShift = 1;
 
     init() {
-        this.audio.play();
+        // this.audio.play();
+        this.audioElements.shot.play();
 
         this.element.classList.add("battle-screen__bullet");
         this.area.append(this.element);
