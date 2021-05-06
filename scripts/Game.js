@@ -35,12 +35,8 @@ export class Game extends Common {
 
     enemyType = null;
 
-    // audioShot = this.audioElements.shot;
-
     init() {
         this.connectDOM();
-        // this.setupListeners();
-
         this.countToStart();
     }
 
@@ -144,7 +140,7 @@ export class Game extends Common {
             this.lvlEl.hidden = true;
             this.playFirstLevel();
 
-            this.audioBattle = new Audio("./audio/battlebg/dark.mp3");
+            this.audioBattle = new Audio("./audio/dark.mp3");
             this.audioBattle.loop = true;
             this.audioBattle.volume = 0.8;
             this.audioBattle.play();
@@ -443,7 +439,7 @@ export class Game extends Common {
     }
 
     checkResult = async () => {
-        const url = "http://localhost:8000/players";
+        const url = "https://spacewar-ranks-db.herokuapp.com/players";
         const response = await fetch(url);
         const data = await response.json();
         data.sort((player1, player2) => {
@@ -459,8 +455,11 @@ export class Game extends Common {
                 e.preventDefault();
                 const leaderboard = new Leaderboard();
                 resultScreen.addPlayer(this.points);
-                leaderboard.renderInfo();
-                resultScreen.changeToLeaderboard();
+
+                setTimeout(() => {
+                    leaderboard.renderInfo();
+                    resultScreen.changeToLeaderboard();
+                }, 1000);
             });
         } else {
             const leaderboard = new Leaderboard();

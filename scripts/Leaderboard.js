@@ -25,8 +25,7 @@ export class Leaderboard extends Common {
     }
 
     renderInfo() {
-        console.log("renderInfo");
-        const url = "http://localhost:8000/players?_sort=points&_order=desc";
+        const url = "https://spacewar-ranks-db.herokuapp.com/players?_sort=points&_order=desc";
         let template = "";
 
         fetch(url)

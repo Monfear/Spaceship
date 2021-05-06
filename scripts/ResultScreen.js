@@ -38,7 +38,7 @@ export class ResultScreen extends Common {
             points,
         };
 
-        const url = "http://localhost:8000/players";
+        const url = "https://spacewar-ranks-db.herokuapp.com/players";
 
         fetch(url, {
             method: "POST",
