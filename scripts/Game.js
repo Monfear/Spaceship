@@ -164,16 +164,16 @@ export class Game extends Common {
         this.timerInterval = setInterval(() => {
             seconds++;
 
+            if (seconds === 30 || seconds === 60) {
+                this.playNextLevel();
+            }
+
             if (seconds === 60) {
                 seconds = 0;
                 minutes++;
 
                 // this.playNextLevel();
                 // this.addShield();
-            }
-
-            if (seconds === 30 || seconds === 60) {
-                this.playNextLevel();
             }
 
             this.timer.innerText = `${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
