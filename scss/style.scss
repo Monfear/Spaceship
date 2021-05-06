@@ -24,17 +24,6 @@ $text-color: #e4f5f4;
     outline: none;
     transition: all 0.2s;
 
-    // width: 53px; xx
-    // height: 53px; xx
-    // background-color: transparent;
-    // background-size: cover;
-    // border: none;
-    // border-radius: 20px; xx
-    // cursor: inherit;
-    // margin-top: 2%; !
-    // outline: none;
-    // transition: all 0.2s;
-
     &:hover {
         box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
         transform: scale(1.05);
@@ -62,14 +51,6 @@ body {
 }
 
 .start-screen {
-    // width: 640px;
-    // height: 480px;
-    // background-image: url("./../img/Window.png");
-
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
     @include window();
 
     display: flex;
@@ -85,12 +66,6 @@ body {
 
     &__button {
         @include button-base();
-        // background-color: transparent;
-        // background-size: cover;
-        // border: none;
-        // cursor: inherit;
-        // outline: none;
-        // transition: all 0.2s;
         width: 300px;
         height: 85px;
         margin-top: 2%;
@@ -123,10 +98,6 @@ body {
                 background-color: red;
                 transform: rotate(-50deg);
             }
-
-            // &:hover {
-            //     box-shadow: 0 0 20px 5px white, 0 0 5px 3px inset white;
-            // }
         }
     }
 }
@@ -162,6 +133,12 @@ body {
         outline: none;
         background-color: #e5f0ff;
         padding: 0.4rem 0;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     &__trophy {
@@ -315,9 +292,6 @@ body {
         height: 233px;
         background-image: url("./../img/spaceship_sprites.png");
         position: fixed;
-        // transform: translateY(55px);
-        // bottom: 0;
-        // left: 50%;
         animation: spaceship-move 400ms steps(7) infinite;
         transition: transform 1s;
     }
