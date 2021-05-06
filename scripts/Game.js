@@ -168,6 +168,11 @@ export class Game extends Common {
                 seconds = 0;
                 minutes++;
 
+                // this.playNextLevel();
+                this.addShield();
+            }
+
+            if (seconds === 30) {
                 this.playNextLevel();
             }
 
@@ -175,13 +180,22 @@ export class Game extends Common {
         }, this.timerSpeedInterval);
     }
 
+    addShield() {
+        if (this.spaceship.shields < 7) {
+            this.spaceship.shields++;
+            let shieldItem = document.createElement("div");
+            shieldItem.classList.add("battle-screen__armor");
+            this.spaceship.armorBar.append(shieldItem);
+        }
+    }
+
     playNextLevel() {
         this.level++;
 
-        this.spaceship.shields++;
-        let shieldItem = document.createElement("div");
-        shieldItem.classList.add("battle-screen__armor");
-        this.spaceship.armorBar.append(shieldItem);
+        // this.spaceship.shields++;
+        // let shieldItem = document.createElement("div");
+        // shieldItem.classList.add("battle-screen__armor");
+        // this.spaceship.armorBar.append(shieldItem);
 
         if (this.insertEnemySpeedInterval > 1000) {
             clearInterval(this.insertEnemyInterval);
@@ -391,16 +405,18 @@ export class Game extends Common {
     }
 
     addHealth(item, idx, arr) {
-        item.audioHealth.play();
+        if (this.spaceship.lives < 7) {
+            item.audioHealth.play();
 
-        arr.splice(idx, 1);
-        item.delete();
+            arr.splice(idx, 1);
+            item.delete();
 
-        this.spaceship.lives++;
+            this.spaceship.lives++;
 
-        let hpItem = document.createElement("div");
-        hpItem.classList.add("battle-screen__hp");
-        this.spaceship.hpBar.append(hpItem);
+            let hpItem = document.createElement("div");
+            hpItem.classList.add("battle-screen__hp");
+            this.spaceship.hpBar.append(hpItem);
+        }
     }
 
     endGame() {
