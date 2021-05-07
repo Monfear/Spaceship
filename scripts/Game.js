@@ -196,7 +196,7 @@ export class Game extends Common {
 
         if (this.insertEnemySpeedInterval > 1000) {
             clearInterval(this.insertEnemyInterval);
-            this.insertEnemySpeedInterval -= 200;
+            this.insertEnemySpeedInterval -= 300;
             this.insertEnemyInterval = setInterval(() => this.drawEnemy(), this.insertEnemySpeedInterval);
         }
 

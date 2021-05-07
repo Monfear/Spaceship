@@ -1,4 +1,4 @@
-import { audioElements } from "./audio.js";
+// import { audioElements } from "./audio.js";
 import { Common } from "./Common.js";
 
 export class Bullet extends Common {
@@ -19,8 +19,8 @@ export class Bullet extends Common {
 
     init() {
         // this.audio.play();
-        // this.audioElements.shot.play();
-        audioElements.shot.play();
+        this.audioElements.shot.play();
+        // audioElements.shot.play();
 
         this.element.classList.add("battle-screen__bullet");
         this.area.append(this.element);
