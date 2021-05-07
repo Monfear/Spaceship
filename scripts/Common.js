@@ -41,11 +41,11 @@ export class Common {
         btnExit2Leaderboard: "[data-btn-exit2-leaderboard]",
     };
 
-    audioElements = {
-        shot: new Audio("./audio/LaserShot.wav"),
-        explosion: new Audio("./audio/Explosion.wav"),
-        hit: new Audio("./audio/LowBassHit.wav"),
-    };
+    // audioElements = {
+    //     shot: new Audio("./audio/LaserShot.wav"),
+    //     explosion: new Audio("./audio/Explosion.wav"),
+    //     hit: new Audio("./audio/LowBassHit.wav"),
+    // };
 
     getElement(selector) {
         const elementDOM = document.querySelector(selector);

@@ -26,6 +26,7 @@ export class Game extends Common {
 
     insertEnemyInterval = null;
     insertEnemySpeedInterval = 3000;
+    // insertEnemySpeedInterval = 500;
 
     survivalItems = [];
     survivalItemsSpeed = 20;

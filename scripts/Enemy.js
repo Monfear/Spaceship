@@ -1,3 +1,4 @@
+import { audioElements } from "./audio.js";
 import { Common } from "./Common.js";
 
 export class Enemy extends Common {
@@ -43,8 +44,8 @@ export class Enemy extends Common {
     getDamaged() {
         // this.audioHit.play();
         // this.audioHit.volume = 0.3;
-        this.audioElements.hit.volume = 0.3;
-        this.audioElements.hit.play();
+        // this.audioElements.hit.volume = 0.3;
+        // this.audioElements.hit.play();
 
         this.lives--;
 
@@ -55,7 +56,8 @@ export class Enemy extends Common {
 
     makeExplosion() {
         // this.audioExplosion.play();
-        this.audioElements.explosion.play();
+        // this.audioElements.explosion.play();
+        audioElements.explosion.play();
         clearInterval(this.interval);
 
         this.element.classList.remove(this.enemyClass);
